@@ -15,8 +15,8 @@
         .buff-list-container {
             z-index: 3;
             position: fixed;
-            left: 20px;
-            top: 30px;
+            left: 100px;
+            top: 20px;
             display: inline-block;
         }
 
@@ -36,6 +36,8 @@
             top: 0;
             left: 98%;
             padding-left: 10px;
+            overflow: auto;
+            height: 90vh;
         }
 
         .buff-list-container:hover>#buff_list {
@@ -43,9 +45,9 @@
         }
 
         #buff_list>li {
-            min-width: max-content;
+            min-width: 75vw;
             cursor: default;
-            margin-top: 3px;
+            margin-top: 5px;
         }
 
         #buff_list>li:hover {
@@ -81,9 +83,9 @@
 </head>
 
 <body>
-
+    <a href="index.html" style="font-size: 1.5em;">返回</a>
     <div class="container">
-        <h3>声骸主词条</h3>
+        <h2>声骸主词条</h2>
         <label for="声骸-1">声骸1:</label>
         <select id="声骸-1" name="multiSelect">
             <option value="22%暴击+150攻击">22%暴击+150攻击</option>
@@ -115,7 +117,7 @@
         </select>
 
 
-        <h3>声骸副词条</h3>
+        <h2>声骸副词条</h2>
         <label for="声骸-暴击">暴击:</label>
         <input type="number" id="声骸-暴击" value="40.5" min="0" max="52.5" step="8.4">
         <label for="声骸-爆伤">爆伤:</label>
@@ -133,7 +135,7 @@
         <label for="声骸-共鸣解放伤害加成">共鸣解放伤害加成:</label>
         <input type="number" id="声骸-共鸣解放伤害加成" value="22.9" min="0" max="58" step="9">
 
-        <h3>其他</h3>
+        <h2>其他</h2>
         <label for="敌方等级">敌方等级:</label>
         <!-- <input type="number" id="敌方等级" value="85" step="10"> -->
         <input type="number" id="敌方等级" value="100" step="10">
@@ -142,7 +144,7 @@
         <input type="number" id="敌方抗性" value="20" step="10" placeholder="深塔20/60,大世界10/40">
 
 
-        <h3>流程</h3>
+        <h2>流程</h2>
         <div class="buff-list-container">
             <label>buff列表</label>
             <ul id="buff_list" style="background-color: white;"></ul>
@@ -266,7 +268,7 @@
             for (const buff_name in buff_列表) {
                 const li = document.createElement('li')
                 buff_list_ele.appendChild(li)
-                li.textContent = buff_name + ': ' + JSON.stringify(buff_列表[buff_name])
+                li.innerHTML = '<a style="color: darkblue">' + buff_name + '</a>: ' + JSON.stringify(buff_列表[buff_name])
                 li.dataset.buff_name = buff_name
             }
 
@@ -283,7 +285,7 @@
 
                 {
                     // 显示
-                    const p_ele = document.createElement('pre')
+                    const p_ele = document.createElement('p')
                     p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${JSON.stringify(buff)}`
                     display_ele.appendChild(p_ele)
                 }
@@ -370,7 +372,7 @@
                     const h_ele = document.createElement('p')
                     h_ele.classList.add('action-title')
                     h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
-                    const p_ele = document.createElement('pre')
+                    const p_ele = document.createElement('p')
                     p_ele.classList.add('action-detail')
                     p_ele.innerHTML = JSON.stringify(所有乘区) + '\n标签: ' + tags
 
