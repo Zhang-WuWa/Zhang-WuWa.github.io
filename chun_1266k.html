@@ -86,64 +86,66 @@
     <a href="index.html" style="font-size: 1.5em;">返回</a>
     <div class="container">
         <h2>说明</h2>
-        <p>实战吃深塔30攻buff，25秒109.7w<br/>标配126.57w</p>
+        <div>
+            <form id="练度流程">
+                <p>切换配置、流程</p>
+            </form>
+        </div>
         <h2>声骸主词条</h2>
         <label for="声骸-1">声骸1:</label>
-        <select id="声骸-1" name="multiSelect">
+        <select id="声骸-1" onchange="更新页面()">
             <option value="22%暴击+150攻击">22%暴击+150攻击</option>
             <option value="44%爆伤+150攻击">44%爆伤+150攻击</option>
             <option value="30%属伤+100攻击">30%属伤+100攻击</option>
             <option value="30%攻击+100攻击">30%攻击+100攻击</option>
         </select>
         <label for="声骸-2">声骸2:</label>
-        <select id="声骸-2" name="multiSelect">
+        <select id="声骸-2" onchange="更新页面()">
             <option value="30%属伤+100攻击">30%属伤+100攻击</option>
             <option value="30%攻击+100攻击">30%攻击+100攻击</option>
             <option value="22%暴击+150攻击">22%暴击+150攻击</option>
             <option value="44%爆伤+150攻击">44%爆伤+150攻击</option>
         </select>
         <label for="声骸-3">声骸3:</label>
-        <select id="声骸-3" name="multiSelect">
+        <select id="声骸-3" onchange="更新页面()">
             <option value="30%属伤+100攻击">30%属伤+100攻击</option>
             <option value="30%攻击+100攻击">30%攻击+100攻击</option>
             <option value="18%攻击+2280生命">18%攻击+2280生命</option>
         </select>
 
         <label for="声骸-4">声骸4:</label>
-        <select id="声骸-4" name="multiSelect">
+        <select id="声骸-4" onchange="更新页面()">
             <option value="18%攻击+2280生命">18%攻击+2280生命</option>
         </select>
         <label for="声骸-5">声骸5:</label>
-        <select id="声骸-5" name="multiSelect">
+        <select id="声骸-5" onchange="更新页面()">
             <option value="18%攻击+2280生命">18%攻击+2280生命</option>
         </select>
 
 
         <h2>声骸副词条</h2>
         <label for="声骸-暴击">暴击:</label>
-        <input type="number" id="声骸-暴击" value="40.5" min="0" max="52.5" step="8.4">
+        <input type="number" id="声骸-暴击" value="40.5" min="0" max="52.5" step="8.4" onchange="更新页面()">
         <label for="声骸-爆伤">爆伤:</label>
-        <input type="number" id="声骸-爆伤" value="82.2" min="0" max="105" step="16.8">
+        <input type="number" id="声骸-爆伤" value="82.2" min="0" max="105" step="16.8" onchange="更新页面()">
         <label for="声骸-大攻击">大攻击:</label>
-        <input type="number" id="声骸-大攻击" value="8.6" min="0" max="58" step="9">
+        <input type="number" id="声骸-大攻击" value="8.6" min="0" max="58" step="9" onchange="更新页面()">
         <label for="声骸-小攻击">小攻击:</label>
-        <input type="number" id="声骸-小攻击" value="40" min="0" max="250" step="40">
+        <input type="number" id="声骸-小攻击" value="40" min="0" max="250" step="40" onchange="更新页面()">
         <label for="声骸-普攻伤害加成">普攻伤害加成:</label>
-        <input type="number" id="声骸-普攻伤害加成" value="0" min="0" max="58" step="9">
+        <input type="number" id="声骸-普攻伤害加成" value="0" min="0" max="58" step="9" onchange="更新页面()">
         <label for="声骸-重击伤害加成">重击伤害加成:</label>
-        <input type="number" id="声骸-重击伤害加成" value="0" min="0" max="58" step="9">
+        <input type="number" id="声骸-重击伤害加成" value="0" min="0" max="58" step="9" onchange="更新页面()">
         <label for="声骸-共鸣技能伤害加成">共鸣技能伤害加成:</label>
-        <input type="number" id="声骸-共鸣技能伤害加成" value="0" min="0" max="58" step="9">
+        <input type="number" id="声骸-共鸣技能伤害加成" value="0" min="0" max="58" step="9" onchange="更新页面()">
         <label for="声骸-共鸣解放伤害加成">共鸣解放伤害加成:</label>
-        <input type="number" id="声骸-共鸣解放伤害加成" value="22.9" min="0" max="58" step="9">
+        <input type="number" id="声骸-共鸣解放伤害加成" value="22.9" min="0" max="58" step="9" onchange="更新页面()">
 
         <h2>其他</h2>
         <label for="敌方等级">敌方等级:</label>
-        <!-- <input type="number" id="敌方等级" value="85" step="10"> -->
-        <input type="number" id="敌方等级" value="100" step="10">
+        <input type="number" id="敌方等级" value="100" step="10" onchange="更新页面()">
         <label for="敌方抗性">敌方抗性:</label>
-        <!-- <input type="number" id="敌方抗性" value="10" step="10" placeholder="深塔20/60,大世界10/40"> -->
-        <input type="number" id="敌方抗性" value="20" step="10" placeholder="深塔20/60,大世界10/40">
+        <input type="number" id="敌方抗性" value="20" step="10" onchange="更新页面()" placeholder="深塔20/60,大世界10/40">
 
 
         <h2>流程</h2>
@@ -158,31 +160,34 @@
     </div>
 
     <script>
-        const 参数设置 = {
-            '声骸-1': undefined,
-            '声骸-2': undefined,
-            '声骸-3': undefined,
-            '声骸-4': undefined,
-            '声骸-5': undefined,
-            '声骸-暴击': undefined,
-            '声骸-爆伤': undefined,
-            '声骸-大攻击': undefined,
-            '声骸-小攻击': undefined,
-            '声骸-普攻伤害加成': undefined,
-            '声骸-重击伤害加成': undefined,
-            '声骸-共鸣技能伤害加成': undefined,
-            '声骸-共鸣解放伤害加成': undefined,
-            '敌方等级': undefined,
-            '敌方抗性': undefined
-        }
 
+        const init = function () {
 
-        const dps = () => {
+            const 参数设置 = {
+                '声骸-1': undefined,
+                '声骸-2': undefined,
+                '声骸-3': undefined,
+                '声骸-4': undefined,
+                '声骸-5': undefined,
+                '声骸-暴击': undefined,
+                '声骸-爆伤': undefined,
+                '声骸-大攻击': undefined,
+                '声骸-小攻击': undefined,
+                '声骸-普攻伤害加成': undefined,
+                '声骸-重击伤害加成': undefined,
+                '声骸-共鸣技能伤害加成': undefined,
+                '声骸-共鸣解放伤害加成': undefined,
+                '敌方等级': undefined,
+                '敌方抗性': undefined
+            }
 
             for (const key in 参数设置) {
                 const ele = document.getElementById(key)
                 参数设置[key] = ele.value
             }
+
+            console.log(参数设置)
+
             const 主词条ref = {
                 '22%暴击+150攻击': { 暴击: 22, 小攻击: 150 },
                 '44%爆伤+150攻击': { 爆伤: 44, 小攻击: 150 },
@@ -217,316 +222,533 @@
                     配置.属性[key] = value
                 }
             }
-            console.log(声骸属性)
+            console.log('声骸属性', 声骸属性)
 
+            Object.assign(this.buff_列表, 声骸属性)
+            Object.assign(this.buff_列表.敌方属性.属性, { 敌方等级: parseInt(参数设置.敌方等级), 抗性: parseInt(参数设置.敌方抗性) })
 
-            const buff_列表 = {
-
-                '角色基础': { 属性: { 暴击: 5, 爆伤: 150 } },
-                '敌方属性': { 属性: { 敌方等级: parseInt(参数设置.敌方等级), 抗性: parseInt(参数设置.敌方抗性) } },
-                '椿-450-12攻-16爆': { 属性: { 等级: 90, 基础攻击: 450 - 1, 大攻击: 12, 爆伤: 16 } },
-
-                '椿-温床-15湮灭': { 属性: { 增伤: 15 }, 标签: '湮灭', 描述: '湮灭伤害加成提升15%，重击修枝伤害视为普攻伤害。' },
-                '椿-侵占-15普攻': { 属性: { 增伤: 15 }, 标签: '普攻', 描述: '普攻伤害加成提升15%，普攻和普攻蔓舞、普攻烬华蔓舞的抗打断能力提升。' },
-
-                '酣梦-倍率提升50%~100%': { 属性: { 倍率提升: 1.0 }, 标签: '酣梦' },
-
-                '裁春-588-24.3暴击-12攻': { 属性: { 基础攻击: 588, 暴击: 24.3, 大攻击: 12 } },
-                '裁春-10普攻*3-14s-造成普攻伤害时': { 属性: { 增伤: 10 }, 标签: '普攻', 描述: '造成普攻伤害时，自身普攻伤害加成提升10%，持续14秒，每秒可触发1次，可叠加3层；' },
-                '裁春-40普攻-10s-协奏消耗时': { 属性: { 增伤: 40 }, 标签: '普攻', 描述: '自身的协奏能量消耗时，自身普攻伤害加成提升40%，持续10秒' },
-
-                '沉日劫明-10湮灭': { 属性: { 增伤: 10 }, 标签: '湮灭' },
-                '沉日劫明-7.5湮灭*4-15s-普攻或重击时': { 属性: { 增伤: 7.5 }, 标签: '湮灭', 描述: '使用普攻或重击时，湮灭伤害提升7.5%，该效果可叠加四层，持续15秒' },
-                '梦魇·无冠者-12湮灭': { 属性: { 增伤: 12 }, 标签: '湮灭' },
-                '梦魇·无冠者-12普攻': { 属性: { 增伤: 12 }, 标签: '普攻' },
-
-                '散华-38普攻加深-14s': { 属性: { 加深: 38 }, 标签: '普攻', 描述: '持续14秒' },
-                '散华-20攻-20s-6链': { 属性: { 大攻击: 20 }, 描述: '引爆【冰棱】或【冰川】后，队伍中的角色攻击提升10%，持续20秒，可叠加2层。' },
-
-                '守岸人-12.5暴击': { 属性: { 暴击: 12.5 }, 描述: '星域持续时间30秒' },
-                '守岸人-25爆伤': { 属性: { 爆伤: 25 }, 描述: '星域持续时间30秒' },
-                '守岸人-15加深': { 属性: { 加深: 15 }, 描述: '队伍中的角色全伤害加深15%。最多存在30秒' },
-
-                '轻云出月-22.5攻-15s': { 属性: { 大攻击: 22.5 }, 描述: '使用延奏技能后，下一个登场的共鸣者攻击提升22.5%，持续15秒' },
-                '无常凶鹭-12增伤-15s': { 属性: { 增伤: 12 }, 描述: '下一个变奏登场的角色伤害提升12%，持续15秒。技能冷却：20秒' },
-
-                '隐世回光-15攻-30s': { 属性: { 大攻击: 15 }, 描述: '自身为友方提供治疗时，全队共鸣者攻击提升15%，持续30秒' },
-                '无归的谬误-10攻-20s': { 属性: { 大攻击: 10 }, 描述: '全队角色攻击提升10%，持续20秒。技能冷却：20秒' },
-
-                ...声骸属性,
-
-                '深塔-30攻': { 属性: { 大攻击: 30 }, 描述: '角色受到治疗时，全队攻击提升30%，持续20秒' },
-
-            }
+            console.log('所有可用buff', this.buff_列表)
 
             const display_ele = document.getElementById('display')
             display_ele.textContent = ''
             const buff_list_ele = document.getElementById('buff_list')
 
-            buff_list_ele.onclick = (e) => {
-                console.log(e.target.dataset.buff_name)
-            }
-
-            for (const buff_name in buff_列表) {
+            for (const buff_name in this.buff_列表) {
                 const li = document.createElement('li')
                 buff_list_ele.appendChild(li)
-                li.innerHTML = '<a style="color: darkblue">' + buff_name + '</a>: ' + JSON.stringify(buff_列表[buff_name])
+                li.innerHTML = '<a style="color: darkblue">' + buff_name + '</a>: ' + JSON.stringify(this.buff_列表[buff_name])
                 li.dataset.buff_name = buff_name
             }
 
-            const buff_总结 = {} // { tag: { buff列表: {...}, 属性: {...} } }
 
-            const buff_统计 =
-                Object.fromEntries(Object.entries(buff_列表).map(kv => [kv[0], 0])) // { buff_name: buff_count }
+            this.buff_总结 = {} // { tag: { buff列表: {...}, 属性: {...} } }
 
-            const add_buff = (buff_name, diff = 1) => {
-                const buff = buff_列表[buff_name]
-                const buff适用标签 = buff['标签'] || null
-                const 对应标签buff总结 = buff_总结[buff适用标签] || { buff统计: {}, 属性: {} }
-                buff_总结[buff适用标签] = 对应标签buff总结
+            this.buff_统计 =
+                Object.fromEntries(Object.entries(this.buff_列表).map(kv => [kv[0], 0])) // { buff_name: buff_count }
 
-                {
-                    // 显示
-                    const p_ele = document.createElement('p')
-                    p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${JSON.stringify(buff)}`
-                    display_ele.appendChild(p_ele)
-                }
-                {
-                    const tmp = 对应标签buff总结.buff统计
-                    tmp[buff_name] = (tmp[buff_name] || 0) + diff
-                    buff_统计[buff_name] += diff
-                }
+            this.倍率_sum = 0
+            this.伤害_sum = 0
 
-                for (const [buff_key, buff_value] of Object.entries(buff['属性'])) {
-                    对应标签buff总结.属性[buff_key] = (对应标签buff总结.属性[buff_key] || 0) + diff * buff_value
-                }
+        }
+
+        const add_buff = function (buff_name, diff = 1) {
+            const buff = this.buff_列表[buff_name]
+            const buff适用标签 = buff['标签'] || null
+            const 对应标签buff总结 = this.buff_总结[buff适用标签] || { buff统计: {}, 属性: {} }
+            this.buff_总结[buff适用标签] = 对应标签buff总结
+
+            {
+                // 显示
+                const p_ele = document.createElement('p')
+                p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${JSON.stringify(buff)}`
+                const display_ele = document.getElementById('display')
+                display_ele.appendChild(p_ele)
+            }
+            {
+                const tmp = 对应标签buff总结.buff统计
+                tmp[buff_name] = (tmp[buff_name] || 0) + diff
+                this.buff_统计[buff_name] += diff
             }
 
-            let 倍率_sum = 0
-            let 伤害_sum = 0
-
-            // 对于每一种buff的处理方式, 按此顺序执行！按此顺序执行！
-            const update_buff = new Map([
-                ['倍率', (乘区, value = 0) => { 乘区.倍率 = value }],
-                ['倍率提升', (乘区, value = 0) => { 乘区.倍率 *= (1 + value) }],
-                ['倍率增加', (乘区, value = 0) => { 乘区.倍率 += value }],
-                ['基础攻击', (乘区, value = 0) => { 乘区.基础攻击 = value }],
-                ['大攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.基础攻击 * (1 + value / 100) }],
-                ['小攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.攻击 + value }],
-                ['暴击', (乘区, value = 0) => { 乘区.暴击 = value / 100 }],
-                ['爆伤', (乘区, value = 0) => { 乘区.爆伤 = value / 100 }],
-                ['增伤', (乘区, value = 0) => { 乘区.增伤 = value / 100 + 1 }],
-                ['加深', (乘区, value = 0) => { 乘区.加深 = value / 100 + 1 }],
-                ['抗性', (乘区, value = 0) => { 乘区.抗性 = 1 - value / 100 }],
-                ['敌方等级', (乘区, value) => { 乘区.防御 = (99 + value) }],
-                ['减防', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
-                ['无视防御', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
-                ['等级', (乘区, value) => { 乘区.防御 = (value + 100) / (value + 100 + 乘区.防御) }],
-            ])
-
-            // 对于浮点数x, 保留n位小数, 返回float
-            const my_toFixed = (x, n) => parseFloat((x).toFixed(n))
-            const my_toPrecision = (x, n) => parseFloat((x).toPrecision(n))
-
-            const add_action = (action_name, 倍率, ...tags) => {
-                const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
-                update_buff.keys().forEach(element => {
-                    适用buff总结.set(element, undefined)
-                });
-                适用buff总结.set('倍率', 倍率)
-
-                for (const tag of [null, ...tags]) {
-                    if (!buff_总结[tag])
-                        continue
-                    for (const [buff_key, buff_value] of Object.entries(buff_总结[tag].属性)) {
-                        const tmp = 适用buff总结.get(buff_key)
-                        适用buff总结.set(buff_key, tmp ? tmp + buff_value : buff_value)
-                    }
-                }
-
-                const 所有乘区 = {}
-
-                for (const [buff类别, buff值] of 适用buff总结.entries()) {
-                    if (buff值)
-                        update_buff.get(buff类别)(所有乘区, buff值)
-                    else
-                        update_buff.get(buff类别)(所有乘区)
-                }
-
-                let 不暴击伤害 = 1
-                for (const 乘区 in 所有乘区) {
-                    if (!['基础攻击', '暴击', '爆伤'].includes(乘区))
-                        不暴击伤害 *= 所有乘区[乘区]
-                }
-
-                const 暴击伤害 = 不暴击伤害 * 所有乘区.爆伤
-                const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 所有乘区.暴击) + 不暴击伤害
-
-                倍率_sum += 所有乘区.倍率
-                伤害_sum += 伤害期望
-
-                for (const [乘区, 精度] of Object.entries({ 攻击: 5, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
-                    所有乘区[乘区] = my_toPrecision(所有乘区[乘区], 精度)
-
-                const 伤害展示 = Object.fromEntries(Object.entries({ 伤害期望, 暴击伤害, 不暴击伤害 }).map((kv) => [kv[0], my_toPrecision(kv[1], 6)]))
-
-                {
-                    const h_ele = document.createElement('p')
-                    h_ele.classList.add('action-title')
-                    h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
-                    const p_ele = document.createElement('p')
-                    p_ele.classList.add('action-detail')
-                    p_ele.innerHTML = JSON.stringify(所有乘区) + '\n标签: ' + tags
-
-                    const buff_ele = document.createElement('pre')
-                    buff_ele.classList.add('action-buff')
-                    buff_ele.textContent = 'buff统计: ' + JSON.stringify(buff_统计, null, 4)
-
-                    const container = document.createElement('div')
-                    container.classList.add('action-container')
-                    container.appendChild(h_ele)
-                    container.appendChild(p_ele)
-                    container.appendChild(buff_ele)
-
-                    display_ele.appendChild(container)
-                }
+            for (const [buff_key, buff_value] of Object.entries(buff['属性'])) {
+                对应标签buff总结.属性[buff_key] = (对应标签buff总结.属性[buff_key] || 0) + diff * buff_value
             }
+        }
 
-            add_buff('角色基础')
-            add_buff('敌方属性')
-            add_buff('椿-450-12攻-16爆')
-            add_buff('裁春-588-24.3暴击-12攻')
+        // 对于每一种buff的处理方式, 按此顺序执行！按此顺序执行！
+        const update_buff = new Map([
+            ['倍率', (乘区, value = 0) => { 乘区.倍率 = value }],
+            ['倍率提升', (乘区, value = 0) => { 乘区.倍率 *= (1 + value) }],
+            ['倍率增加', (乘区, value = 0) => { 乘区.倍率 += value }],
+            ['基础攻击', (乘区, value = 0) => { 乘区.基础攻击 = value }],
+            ['大攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.基础攻击 * (1 + value / 100) }],
+            ['小攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.攻击 + value }],
+            ['暴击', (乘区, value = 0) => { 乘区.暴击 = value / 100 }],
+            ['爆伤', (乘区, value = 0) => { 乘区.爆伤 = value / 100 }],
+            ['增伤', (乘区, value = 0) => { 乘区.增伤 = value / 100 + 1 }],
+            ['加深', (乘区, value = 0) => { 乘区.加深 = value / 100 + 1 }],
+            ['抗性', (乘区, value) => { 乘区.抗性 = 1 - value / 100 }],
+            ['敌方等级', (乘区, value) => { 乘区.防御 = (99 + value) }],
+            ['减防', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
+            ['无视防御', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
+            ['等级', (乘区, value = 90) => { 乘区.防御 = (value + 100) / (value + 100 + 乘区.防御) }],
+        ])
 
-            add_buff('沉日劫明-10湮灭')
+        // 对于浮点数x, 保留n位小数, 返回float
+        const my_toFixed = (x, n) => parseFloat((x).toFixed(n))
+        const my_toPrecision = (x, n) => parseFloat((x).toPrecision(n))
 
-            add_buff('梦魇·无冠者-12湮灭')
-            add_buff('梦魇·无冠者-12普攻')
-            add_buff('椿-温床-15湮灭')
-            add_buff('椿-侵占-15普攻')
+        const add_action = function (action_name, 倍率, ...tags) {
+            const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
+            update_buff.keys().forEach(element => {
+                适用buff总结.set(element, undefined)
+            });
+            适用buff总结.set('倍率', 倍率)
 
-            for (const key in buff_列表) {
-                if (!key.startsWith('声骸'))
+            for (const tag of [null, ...tags]) {
+                if (!this.buff_总结[tag])
                     continue
-                add_buff(key)
+                for (const [buff_key, buff_value] of Object.entries(this.buff_总结[tag].属性)) {
+                    const tmp = 适用buff总结.get(buff_key)
+                    适用buff总结.set(buff_key, tmp ? tmp + buff_value : buff_value)
+                }
             }
 
-            add_buff('守岸人-12.5暴击')
-            add_buff('守岸人-15加深')
-            add_buff('隐世回光-15攻-30s')
-            add_buff('无归的谬误-10攻-20s')
+            const 所有乘区 = {}
 
-            for (const key in buff_列表) {
-                if (!key.startsWith('深塔'))
-                    continue
-                add_buff(key)
+            for (const [buff类别, buff值] of 适用buff总结.entries()) {
+                if (buff值)
+                    update_buff.get(buff类别)(所有乘区, buff值)
+                else
+                    update_buff.get(buff类别)(所有乘区)
             }
 
-            add_buff('散华-20攻-20s-6链')
+            let 不暴击伤害 = 1
+            for (const 乘区 in 所有乘区) {
+                if (!['基础攻击', '暴击', '爆伤'].includes(乘区))
+                    不暴击伤害 *= 所有乘区[乘区]
+            }
 
-            // 循环时，全程吃满
-            add_buff('裁春-10普攻*3-14s-造成普攻伤害时', 3)
-            add_buff('沉日劫明-7.5湮灭*4-15s-普攻或重击时', 4)
+            const 暴击伤害 = 不暴击伤害 * 所有乘区.爆伤
+            const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 所有乘区.暴击) + 不暴击伤害
 
+            this.倍率_sum += 所有乘区.倍率
+            this.伤害_sum += 伤害期望
 
-            add_action('变奏10级', 1.9881, '湮灭')
-            add_action('test 变奏1级 7378', 1e-4, '湮灭')
+            for (const [乘区, 精度] of Object.entries({ 攻击: 5, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
+                所有乘区[乘区] = my_toPrecision(所有乘区[乘区], 精度)
 
-            // 红AAE白ZAAE应该是必满的 9.47+8.98+24.45+22.08+9+18.96+21.1=114.04
+            const 伤害展示 = Object.fromEntries(Object.entries({ 伤害期望, 暴击伤害, 不暴击伤害 }).map((kv) => [kv[0], my_toPrecision(kv[1], 6)]))
 
-            add_action('红A1 8892', 0.9633, '湮灭', '普攻', '酣梦')
-            add_action('红A2 ', 0.4563 * 2, '湮灭', '普攻', '酣梦')
-            add_action('test 红A2 4212', 0.4563 / 1e4, '湮灭', '普攻', '酣梦')
+            {
+                const h_ele = document.createElement('p')
+                h_ele.classList.add('action-title')
+                h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
+                const p_ele = document.createElement('p')
+                p_ele.classList.add('action-detail')
+                p_ele.innerHTML = JSON.stringify(所有乘区) + '\n标签: ' + tags
 
-            add_action('红E', 0.5261 * 5, '湮灭', '普攻')
-            add_action('test 红E 4856', 0.5261 / 1e4, '湮灭', '普攻')
+                const buff_ele = document.createElement('pre')
+                buff_ele.classList.add('action-buff')
+                buff_ele.textContent = 'buff统计: ' + JSON.stringify(this.buff_统计, null, 4)
 
-            add_buff('散华-38普攻加深-14s')
-            add_buff('轻云出月-22.5攻-15s')
-            add_buff('无常凶鹭-12增伤-15s')
+                const container = document.createElement('div')
+                container.classList.add('action-container')
+                container.appendChild(h_ele)
+                container.appendChild(p_ele)
+                container.appendChild(buff_ele)
 
-            add_buff('守岸人-25爆伤')
+                const display_ele = document.getElementById('display')
+                display_ele.appendChild(container)
+            }
+        }
 
-            add_action('变奏10级', 1.9881, '湮灭', '普攻', '酣梦')
-            add_action('test 变奏1级 9237', 0.0001, '湮灭')
-            add_action('R', 12.0281, '湮灭', '共鸣解放')
-            add_action('test R 105171', 10.3909 / 1e4, '湮灭', '共鸣解放')
-
-            add_action('白Z', 0.8814 * 3, '湮灭', '普攻')
-            add_action('test 白Z 13415', 0.8814 / 1e4, '湮灭', '普攻')
-            add_action('白A4', 0.2470 * 5, '湮灭', '普攻')
-            add_action('test 白A4 3760', 0.2470 / 1e4, '湮灭', '普攻')
-            add_action('白A5', 0.4817 * 4, '湮灭', '普攻')
-            add_action('test 白A5 7332', 0.4817 / 1e4, '湮灭', '普攻')
-            add_action('白E', 1.1362 * 2, '湮灭', '普攻')
-            add_action('test 白E 17293', 1.1362 / 1e4, '湮灭', '普攻')
-
-            add_buff('裁春-40普攻-10s-协奏消耗时')
-            add_buff('酣梦-倍率提升50%~100%')
-
-            add_action('一日花 218100', 12.6245, '湮灭', '普攻')
-
-            // 9.47+8.98+24.45+22.08+36 = 100.98
-            // 9.47+8.98+24.45+22.08+36/20*8+21 = 100.38
-            add_action('红A1 33296', 0.9633, '湮灭', '普攻', '酣梦')
-            add_action('红A2', 0.4563 * 2, '湮灭', '普攻', '酣梦')
-            add_action('红E', 0.5261 * 5, '湮灭', '普攻', '酣梦')
-            add_action('白Z', 0.8814 * 3, '湮灭', '普攻', '酣梦')
-            add_action('白A4', 0.2470 * 20, '湮灭', '普攻', '酣梦')
-            add_action('test 白A4 8552', 0.2470 / 1e4, '湮灭', '普攻', '酣梦')
-
-            add_buff('酣梦-倍率提升50%~100%', -1)
-
-            add_action('白A5 1段 16649/2', 0.4817, '湮灭', '普攻', '酣梦')
-
-            add_buff('散华-38普攻加深-14s', -1)
-            add_action('白A5 2段 6255', 0.4817, '湮灭', '普攻', '酣梦')
-            add_action('白A5 3段 6255', 0.4817, '湮灭', '普攻', '酣梦')
-
-            add_buff('轻云出月-22.5攻-15s', -1)
-            add_buff('无常凶鹭-12增伤-15s', -1)
-            add_action('白E 1段 13170', 1.1362, '湮灭', '普攻', '酣梦')
-            add_buff('裁春-40普攻-10s-协奏消耗时', -1)
-            add_action('白A5 4段 4894', 0.4817, '湮灭', '普攻', '酣梦')
-            add_action('白E 2段 11544', 1.1362, '湮灭', '普攻', '酣梦')
-
-
-            // E2-Z-5A4-A5-E1=95.59蕊=24.45+22.08+36/20*5+18.96+21.1
-            // 22.08+36=58.088
-            // 9.47+8.98+1.6*25=58.45
-
-            add_action('Q 21488', 2.6460, '湮灭')
-            add_action('延奏1段 26737', 3.2924, '湮灭')
-
-
-            add_buff('守岸人-12.5暴击', -1)
-            add_buff('守岸人-25爆伤', -1)
-
-            add_buff('无归的谬误-10攻-20s', -1)
-
-            add_action('延奏2段 32668', 4.5902, '湮灭')
-
-            console.log(buff_总结)
-
-            倍率_sum = my_toFixed(倍率_sum, 4)
-            伤害_sum = my_toFixed(伤害_sum, 1)
-
+        const 总伤展示 = function () {
             document.getElementById('summary').textContent =
-                `总倍率: ${倍率_sum}\n总伤害: ${伤害_sum}`
+                `总倍率: ${this.倍率_sum}\n总伤害: ${this.伤害_sum}`
+        }
 
-            console.log(倍率_sum)
-            console.log(伤害_sum, 伤害_sum - 1283679.0)
-            console.log('折枝提升', 1283644.565439949 / 858555.677008433, 1283644.565439949, 858555.677008433)
-            console.log('折枝提升', 1283644.565439949 / 949384.7024709079, 1283644.565439949, 949384.7024709079)
+        const 椿buff列表 = {
+
+            '角色基础': { 属性: { 暴击: 5, 爆伤: 150 } },
+            '敌方属性': { 属性: {} }, // 敌方等级和敌方抗性，会在init函数中被设置
+            '椿-450-12攻-16爆': { 属性: { 等级: 90, 基础攻击: 450 - 1, 大攻击: 12, 爆伤: 16 } },
+
+            '椿-温床-15湮灭': { 属性: { 增伤: 15 }, 标签: '湮灭', 描述: '湮灭伤害加成提升15%，重击修枝伤害视为普攻伤害。' },
+            '椿-侵占-15普攻': { 属性: { 增伤: 15 }, 标签: '普攻', 描述: '普攻伤害加成提升15%，普攻和普攻蔓舞、普攻烬华蔓舞的抗打断能力提升。' },
+
+            '酣梦-倍率提升50%~100%': { 属性: { 倍率提升: 1.0 }, 标签: '酣梦' },
+
+            '裁春-588-24.3暴击-12攻': { 属性: { 基础攻击: 588, 暴击: 24.3, 大攻击: 12 } },
+            '裁春-10普攻*3-14s-造成普攻伤害时': { 属性: { 增伤: 10 }, 标签: '普攻', 描述: '造成普攻伤害时，自身普攻伤害加成提升10%，持续14秒，每秒可触发1次，可叠加3层；' },
+            '裁春-40普攻-10s-协奏消耗时': { 属性: { 增伤: 40 }, 标签: '普攻', 描述: '自身的协奏能量消耗时，自身普攻伤害加成提升40%，持续10秒' },
+
+            '沉日劫明-10湮灭': { 属性: { 增伤: 10 }, 标签: '湮灭' },
+            '沉日劫明-7.5湮灭*4-15s-普攻或重击时': { 属性: { 增伤: 7.5 }, 标签: '湮灭', 描述: '使用普攻或重击时，湮灭伤害提升7.5%，该效果可叠加四层，持续15秒' },
+            '梦魇·无冠者-12湮灭': { 属性: { 增伤: 12 }, 标签: '湮灭' },
+            '梦魇·无冠者-12普攻': { 属性: { 增伤: 12 }, 标签: '普攻' },
+
+            '散华-38普攻加深-14s': { 属性: { 加深: 38 }, 标签: '普攻', 描述: '持续14秒' },
+            '散华-20攻-20s-6链': { 属性: { 大攻击: 20 }, 描述: '引爆【冰棱】或【冰川】后，队伍中的角色攻击提升10%，持续20秒，可叠加2层。' },
+
+            '守岸人-12.5暴击': { 属性: { 暴击: 12.5 }, 描述: '星域持续时间30秒' },
+            '守岸人-25爆伤': { 属性: { 爆伤: 25 }, 描述: '星域持续时间30秒' },
+            '守岸人-15加深': { 属性: { 加深: 15 }, 描述: '队伍中的角色全伤害加深15%。最多存在30秒' },
+
+            '轻云出月-22.5攻-15s': { 属性: { 大攻击: 22.5 }, 描述: '使用延奏技能后，下一个登场的共鸣者攻击提升22.5%，持续15秒' },
+            '无常凶鹭-12增伤-15s': { 属性: { 增伤: 12 }, 描述: '下一个变奏登场的角色伤害提升12%，持续15秒。技能冷却：20秒' },
+
+            '隐世回光-15攻-30s': { 属性: { 大攻击: 15 }, 描述: '自身为友方提供治疗时，全队共鸣者攻击提升15%，持续30秒' },
+            '无归的谬误-10攻-20s': { 属性: { 大攻击: 10 }, 描述: '全队角色攻击提升10%，持续20秒。技能冷却：20秒' },
+
+            // ...声骸属性, 会在init函数中设置
+
+            '深塔-30攻': { 属性: { 大攻击: 30 }, 描述: '角色受到治疗时，全队攻击提升30%，持续20秒' },
 
         }
 
+        const 练度流程列表 = {
+            '椿1097k实战': {
+                标题: '109.7w（实战伤害统计）（个人配置吃深塔30攻buff）',
+                声骸配置: {
+                    "声骸-1": "22%暴击+150攻击",
+                    "声骸-2": "30%属伤+100攻击",
+                    "声骸-3": "30%属伤+100攻击",
+                    "声骸-4": "18%攻击+2280生命",
+                    "声骸-5": "18%攻击+2280生命",
+                    "声骸-暴击": "40.5",
+                    "声骸-爆伤": "82.2",
+                    "声骸-大攻击": "8.6",
+                    "声骸-小攻击": "40",
+                    "声骸-普攻伤害加成": "0",
+                    "声骸-重击伤害加成": "0",
+                    "声骸-共鸣技能伤害加成": "0",
+                    "声骸-共鸣解放伤害加成": "22.9",
+                    "敌方等级": "100",
+                    "敌方抗性": "20"
+                },
+                buff_列表: 椿buff列表,
+                流程: function () {
 
-        for (const key in 参数设置) {
-            const ele = document.getElementById(key)
-            ele.onchange = dps
+                    this.add_buff('角色基础')
+                    this.add_buff('敌方属性')
+                    this.add_buff('椿-450-12攻-16爆')
+                    this.add_buff('裁春-588-24.3暴击-12攻')
+
+                    this.add_buff('沉日劫明-10湮灭')
+
+                    this.add_buff('梦魇·无冠者-12湮灭')
+                    this.add_buff('梦魇·无冠者-12普攻')
+                    this.add_buff('椿-温床-15湮灭')
+                    this.add_buff('椿-侵占-15普攻')
+
+                    for (const key in this.buff_列表) {
+                        if (!key.startsWith('声骸'))
+                            continue
+                        this.add_buff(key)
+                    }
+
+                    this.add_buff('守岸人-12.5暴击')
+                    this.add_buff('守岸人-15加深')
+                    this.add_buff('隐世回光-15攻-30s')
+                    this.add_buff('无归的谬误-10攻-20s')
+
+                    for (const key in this.buff_列表) {
+                        if (!key.startsWith('深塔'))
+                            continue
+                        this.add_buff(key)
+                    }
+
+                    this.add_buff('散华-20攻-20s-6链')
+
+                    // 循环时，全程吃满
+                    this.add_buff('裁春-10普攻*3-14s-造成普攻伤害时', 3)
+                    this.add_buff('沉日劫明-7.5湮灭*4-15s-普攻或重击时', 4)
+
+
+                    this.add_action('变奏10级', 1.9881, '湮灭')
+                    this.add_action('test 变奏1级 7378', 1e-4, '湮灭')
+
+                    // 红AAE白ZAAE应该是必满的 9.47+8.98+24.45+22.08+9+18.96+21.1=114.04
+
+                    this.add_action('红A1 8892', 0.9633, '湮灭', '普攻', '酣梦')
+                    this.add_action('红A2 ', 0.4563 * 2, '湮灭', '普攻', '酣梦')
+                    this.add_action('test 红A2 4212', 0.4563 / 1e4, '湮灭', '普攻', '酣梦')
+
+                    this.add_action('红E', 0.5261 * 5, '湮灭', '普攻')
+                    this.add_action('test 红E 4856', 0.5261 / 1e4, '湮灭', '普攻')
+
+                    this.add_buff('散华-38普攻加深-14s')
+                    this.add_buff('轻云出月-22.5攻-15s')
+                    this.add_buff('无常凶鹭-12增伤-15s')
+
+                    this.add_buff('守岸人-25爆伤')
+
+                    this.add_action('变奏10级', 1.9881, '湮灭', '普攻', '酣梦')
+                    this.add_action('test 变奏1级 9237', 0.0001, '湮灭')
+                    this.add_action('R', 12.0281, '湮灭', '共鸣解放')
+                    this.add_action('test R 105171', 10.3909 / 1e4, '湮灭', '共鸣解放')
+
+                    this.add_action('白Z', 0.8814 * 3, '湮灭', '普攻')
+                    this.add_action('test 白Z 13415', 0.8814 / 1e4, '湮灭', '普攻')
+                    this.add_action('白A4', 0.2470 * 5, '湮灭', '普攻')
+                    this.add_action('test 白A4 3760', 0.2470 / 1e4, '湮灭', '普攻')
+                    this.add_action('白A5', 0.4817 * 4, '湮灭', '普攻')
+                    this.add_action('test 白A5 7332', 0.4817 / 1e4, '湮灭', '普攻')
+                    this.add_action('白E', 1.1362 * 2, '湮灭', '普攻')
+                    this.add_action('test 白E 17293', 1.1362 / 1e4, '湮灭', '普攻')
+
+                    this.add_buff('裁春-40普攻-10s-协奏消耗时')
+                    this.add_buff('酣梦-倍率提升50%~100%')
+
+                    this.add_action('一日花 218100', 12.6245, '湮灭', '普攻')
+
+                    // 9.47+8.98+24.45+22.08+36 = 100.98
+                    // 9.47+8.98+24.45+22.08+36/20*8+21 = 100.38
+                    this.add_action('红A1 33296', 0.9633, '湮灭', '普攻', '酣梦')
+                    this.add_action('红A2', 0.4563 * 2, '湮灭', '普攻', '酣梦')
+                    this.add_action('红E', 0.5261 * 5, '湮灭', '普攻', '酣梦')
+                    this.add_action('白Z', 0.8814 * 3, '湮灭', '普攻', '酣梦')
+                    this.add_action('白A4', 0.2470 * 20, '湮灭', '普攻', '酣梦')
+                    this.add_action('test 白A4 8552', 0.2470 / 1e4, '湮灭', '普攻', '酣梦')
+
+                    this.add_buff('酣梦-倍率提升50%~100%', -1)
+
+                    this.add_action('白A5 1段 16649/2', 0.4817, '湮灭', '普攻', '酣梦')
+
+                    this.add_buff('散华-38普攻加深-14s', -1)
+                    this.add_action('白A5 2段 6255', 0.4817, '湮灭', '普攻', '酣梦')
+                    this.add_action('白A5 3段 6255', 0.4817, '湮灭', '普攻', '酣梦')
+
+                    this.add_buff('轻云出月-22.5攻-15s', -1)
+                    this.add_buff('无常凶鹭-12增伤-15s', -1)
+                    this.add_action('白E 1段 13170', 1.1362, '湮灭', '普攻', '酣梦')
+                    this.add_buff('裁春-40普攻-10s-协奏消耗时', -1)
+                    this.add_action('白A5 4段 4894', 0.4817, '湮灭', '普攻', '酣梦')
+                    this.add_action('白E 2段 11544', 1.1362, '湮灭', '普攻', '酣梦')
+
+
+                    // E2-Z-5A4-A5-E1=95.59蕊=24.45+22.08+36/20*5+18.96+21.1
+                    // 22.08+36=58.088
+                    // 9.47+8.98+1.6*25=58.45
+
+                    this.add_action('Q 21488', 2.6460, '湮灭')
+                    this.add_action('延奏1段 26737', 3.2924, '湮灭')
+
+
+                    this.add_buff('守岸人-12.5暴击', -1)
+                    this.add_buff('守岸人-25爆伤', -1)
+
+                    this.add_buff('无归的谬误-10攻-20s', -1)
+
+                    this.add_action('延奏2段 32668', 4.5902, '湮灭')
+
+                    this.倍率_sum = my_toFixed(this.倍率_sum, 4)
+                    this.伤害_sum = my_toFixed(this.伤害_sum, 1)
+
+
+
+                }
+
+            },
+            '20词条': {
+                标题: '126.57w（中间数值20词条）（100级20抗）（无环境buff）',
+                声骸配置: {
+                    "声骸-1": "44%爆伤+150攻击",
+                    "声骸-2": "30%属伤+100攻击",
+                    "声骸-3": "30%属伤+100攻击",
+                    "声骸-4": "18%攻击+2280生命",
+                    "声骸-5": "18%攻击+2280生命",
+                    "声骸-暴击": "42",
+                    "声骸-爆伤": "84",
+                    "声骸-大攻击": "45",
+                    "声骸-小攻击": "0",
+                    "声骸-普攻伤害加成": "45",
+                    "声骸-重击伤害加成": "0",
+                    "声骸-共鸣技能伤害加成": "0",
+                    "声骸-共鸣解放伤害加成": "0",
+                    "敌方等级": "100",
+                    "敌方抗性": "20"
+                },
+                buff_列表: 椿buff列表,
+                流程: function () {
+
+                    this.add_buff('角色基础')
+                    this.add_buff('敌方属性')
+                    this.add_buff('椿-450-12攻-16爆')
+                    this.add_buff('裁春-588-24.3暴击-12攻')
+
+                    this.add_buff('沉日劫明-10湮灭')
+
+                    this.add_buff('梦魇·无冠者-12湮灭')
+                    this.add_buff('梦魇·无冠者-12普攻')
+                    this.add_buff('椿-温床-15湮灭')
+                    this.add_buff('椿-侵占-15普攻')
+
+                    for (const key in this.buff_列表) {
+                        if (!key.startsWith('声骸'))
+                            continue
+                        this.add_buff(key)
+                    }
+
+                    this.add_buff('守岸人-12.5暴击')
+                    this.add_buff('守岸人-15加深')
+                    this.add_buff('隐世回光-15攻-30s')
+                    this.add_buff('无归的谬误-10攻-20s')
+
+                    this.add_buff('散华-20攻-20s-6链')
+
+                    // 循环时，全程吃满
+                    this.add_buff('裁春-10普攻*3-14s-造成普攻伤害时', 3)
+                    this.add_buff('沉日劫明-7.5湮灭*4-15s-普攻或重击时', 4)
+
+
+                    this.add_action('变奏10级', 1.9881, '湮灭')
+                    this.add_action('test 变奏1级 7378', 1e-4, '湮灭')
+
+                    // 红AAE白ZAAE应该是必满的 9.47+8.98+24.45+22.08+9+18.96+21.1=114.04
+
+                    this.add_action('红A1 8892', 0.9633, '湮灭', '普攻', '酣梦')
+                    this.add_action('红A2 ', 0.4563 * 2, '湮灭', '普攻', '酣梦')
+                    this.add_action('test 红A2 4212', 0.4563 / 1e4, '湮灭', '普攻', '酣梦')
+
+                    this.add_action('红E', 0.5261 * 5, '湮灭', '普攻')
+                    this.add_action('test 红E 4856', 0.5261 / 1e4, '湮灭', '普攻')
+
+                    this.add_buff('散华-38普攻加深-14s')
+                    this.add_buff('轻云出月-22.5攻-15s')
+                    this.add_buff('无常凶鹭-12增伤-15s')
+
+                    this.add_buff('守岸人-25爆伤')
+
+                    this.add_action('变奏10级', 1.9881, '湮灭', '普攻', '酣梦')
+                    this.add_action('test 变奏1级 9237', 0.0001, '湮灭')
+                    this.add_action('R', 12.0281, '湮灭', '共鸣解放')
+                    this.add_action('test R 105171', 10.3909 / 1e4, '湮灭', '共鸣解放')
+
+                    this.add_action('白Z', 0.8814 * 3, '湮灭', '普攻')
+                    this.add_action('test 白Z 13415', 0.8814 / 1e4, '湮灭', '普攻')
+                    this.add_action('白A4', 0.2470 * 5, '湮灭', '普攻')
+                    this.add_action('test 白A4 3760', 0.2470 / 1e4, '湮灭', '普攻')
+                    this.add_action('白A5', 0.4817 * 4, '湮灭', '普攻')
+                    this.add_action('test 白A5 7332', 0.4817 / 1e4, '湮灭', '普攻')
+                    this.add_action('白E', 1.1362 * 2, '湮灭', '普攻')
+                    this.add_action('test 白E 17293', 1.1362 / 1e4, '湮灭', '普攻')
+
+                    this.add_buff('裁春-40普攻-10s-协奏消耗时')
+                    this.add_buff('酣梦-倍率提升50%~100%')
+
+                    this.add_action('一日花 218100', 12.6245, '湮灭', '普攻')
+
+                    // 9.47+8.98+24.45+22.08+36 = 100.98
+                    // 9.47+8.98+24.45+22.08+36/20*8+21 = 100.38
+                    this.add_action('红A1 33296', 0.9633, '湮灭', '普攻', '酣梦')
+                    this.add_action('红A2', 0.4563 * 2, '湮灭', '普攻', '酣梦')
+                    this.add_action('红E', 0.5261 * 5, '湮灭', '普攻', '酣梦')
+                    this.add_action('白Z', 0.8814 * 3, '湮灭', '普攻', '酣梦')
+                    this.add_action('白A4', 0.2470 * 20, '湮灭', '普攻', '酣梦')
+                    this.add_action('test 白A4 8552', 0.2470 / 1e4, '湮灭', '普攻', '酣梦')
+
+                    this.add_buff('酣梦-倍率提升50%~100%', -1)
+
+                    this.add_action('白A5 1段 16649/2', 0.4817, '湮灭', '普攻', '酣梦')
+
+                    this.add_buff('散华-38普攻加深-14s', -1)
+                    this.add_action('白A5 2段 6255', 0.4817, '湮灭', '普攻', '酣梦')
+                    this.add_action('白A5 3段 6255', 0.4817, '湮灭', '普攻', '酣梦')
+
+                    this.add_buff('轻云出月-22.5攻-15s', -1)
+                    this.add_buff('无常凶鹭-12增伤-15s', -1)
+                    this.add_action('白E 1段 13170', 1.1362, '湮灭', '普攻', '酣梦')
+                    this.add_buff('裁春-40普攻-10s-协奏消耗时', -1)
+                    this.add_action('白A5 4段 4894', 0.4817, '湮灭', '普攻', '酣梦')
+                    this.add_action('白E 2段 11544', 1.1362, '湮灭', '普攻', '酣梦')
+
+
+                    // E2-Z-5A4-A5-E1=95.59蕊=24.45+22.08+36/20*5+18.96+21.1
+                    // 22.08+36=58.088
+                    // 9.47+8.98+1.6*25=58.45
+
+                    this.add_action('Q 21488', 2.6460, '湮灭')
+                    this.add_action('延奏1段 26737', 3.2924, '湮灭')
+
+
+                    this.add_buff('守岸人-12.5暴击', -1)
+                    this.add_buff('守岸人-25爆伤', -1)
+
+                    this.add_buff('无归的谬误-10攻-20s', -1)
+
+                    this.add_action('延奏2段 32668', 4.5902, '湮灭')
+
+                    this.倍率_sum = my_toFixed(this.倍率_sum, 4)
+                    this.伤害_sum = my_toFixed(this.伤害_sum, 1)
+
+
+                }
+
+            }
         }
 
-        dps()
+        let 正在切换配置 = false
+
+        let 当前练度流程 = '椿1097k实战'
+
+
+        const 更新页面 = () => {
+            if (正在切换配置)
+                return
+
+
+            const instance = {
+                add_buff,
+                add_action,
+                init,
+                总伤展示,
+                ...练度流程列表[当前练度流程],
+            }
+            instance.buff_列表 = { ...instance.buff_列表 }
+            instance.init()
+            instance.流程()
+            instance.总伤展示()
+        }
+
+        const 切换配置 = (name_or_input) => {
+            正在切换配置 = true
+            console.log(name_or_input)
+            当前练度流程 = name_or_input
+
+            const 声骸配置 = 练度流程列表[当前练度流程]['声骸配置']
+            for (const item in 声骸配置) {
+                document.getElementById(item).value = 声骸配置[item]
+            }
+
+            正在切换配置 = false
+            更新页面()
+        }
+
+        {
+
+            const form_ele = document.getElementById('练度流程')
+            let first = true
+            for (const 练度流程name in 练度流程列表) {
+                const input = document.createElement('input')
+                input.type = 'radio'
+                input.id = 练度流程name
+                input.name = "练度流程"
+                input.value = 练度流程name
+                input.onchange = () => 切换配置(练度流程name)
+                if (练度流程name == 当前练度流程)
+                    input.checked = true
+                const label = document.createElement('label')
+                label.htmlFor = 练度流程name
+                label.innerHTML = 练度流程列表[练度流程name].标题 + '<br/>'
+                form_ele.appendChild(input)
+                form_ele.appendChild(label)
+            }
+        }
+
+        切换配置('椿1097k实战')
+
 
     </script>
 </body>
