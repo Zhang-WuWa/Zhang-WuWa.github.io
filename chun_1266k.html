@@ -88,7 +88,7 @@
         <h2>说明</h2>
         <div>
             <form id="练度流程">
-                <p>切换配置、流程</p>
+                <p>切换配置 </p>
             </form>
         </div>
         <h2>声骸主词条</h2>
@@ -346,7 +346,7 @@
                 h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
                 const p_ele = document.createElement('p')
                 p_ele.classList.add('action-detail')
-                p_ele.innerHTML = JSON.stringify(所有乘区) + '\n标签: ' + tags
+                p_ele.innerHTML = JSON.stringify(所有乘区) + '<br/>标签: ' + tags
 
                 const buff_ele = document.createElement('pre')
                 buff_ele.classList.add('action-buff')
@@ -364,6 +364,10 @@
         }
 
         const 总伤展示 = function () {
+
+            this.倍率_sum = my_toFixed(this.倍率_sum, 4)
+            this.伤害_sum = my_toFixed(this.伤害_sum, 1)
+
             document.getElementById('summary').textContent =
                 `总倍率: ${this.倍率_sum}\n总伤害: ${this.伤害_sum}`
         }
@@ -409,7 +413,7 @@
 
         const 练度流程列表 = {
             '椿1097k实战': {
-                标题: '109.7w（实战伤害统计）（个人配置吃深塔30攻buff）',
+                标题: '109.7w（实战验证）（25秒双变奏轴）（01椿6散00守吃深塔30攻）（100级20抗）',
                 声骸配置: {
                     "声骸-1": "22%暴击+150攻击",
                     "声骸-2": "30%属伤+100攻击",
@@ -543,8 +547,6 @@
 
                     this.add_action('延奏2段 32668', 4.5902, '湮灭')
 
-                    this.倍率_sum = my_toFixed(this.倍率_sum, 4)
-                    this.伤害_sum = my_toFixed(this.伤害_sum, 1)
 
 
 
@@ -552,7 +554,7 @@
 
             },
             '20词条': {
-                标题: '126.57w（中间数值20词条）（100级20抗）（无环境buff）',
+                标题: '126.57w（同轴20词条拉表）（中间数值）',
                 声骸配置: {
                     "声骸-1": "44%爆伤+150攻击",
                     "声骸-2": "30%属伤+100攻击",
@@ -680,13 +682,13 @@
 
                     this.add_action('延奏2段 32668', 4.5902, '湮灭')
 
-                    this.倍率_sum = my_toFixed(this.倍率_sum, 4)
-                    this.伤害_sum = my_toFixed(this.伤害_sum, 1)
+
 
 
                 }
 
             }
+
         }
 
         let 正在切换配置 = false

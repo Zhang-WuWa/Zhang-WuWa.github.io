@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折枝</title>
+    <style>
+        input,
+        select {
+            padding: 1px;
+            margin-right: 15px;
+        }
+
+        .buff-list-container {
+            z-index: 3;
+            position: fixed;
+            left: 100px;
+            top: 20px;
+            display: inline-block;
+        }
+
+        .buff-list-container>label {
+            display: inline-block;
+            padding: 5px 20px;
+            border-style: solid;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        #buff_list {
+            visibility: hidden;
+            list-style-type: none;
+            position: absolute;
+            margin: 0;
+            top: 0;
+            left: 98%;
+            padding-left: 10px;
+            overflow: auto;
+            height: 90vh;
+        }
+
+        .buff-list-container:hover>#buff_list {
+            visibility: visible;
+        }
+
+        #buff_list>li {
+            min-width: 75vw;
+            cursor: default;
+            margin-top: 5px;
+        }
+
+        #buff_list>li:hover {
+            background-color: skyblue;
+        }
+
+        .action-container {
+            position: relative;
+        }
+
+
+        .action-title {
+            color: darkblue;
+            margin-bottom: 0;
+        }
+
+        .action-detail {
+            margin: 5px 0 16px;
+        }
+
+        .action-buff {
+            position: absolute;
+            top: 100%;
+            visibility: hidden;
+            background-color: skyblue;
+            z-index: 2;
+        }
+
+        .action-container:hover>.action-buff {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" style="font-size: 1.5em;">返回</a>
+    <div class="container">
+        <h2>说明</h2>
+        <p>实战82.19w<br />标配96.43w</p>
+        <h2>声骸主词条</h2>
+        <label for="声骸-1">声骸1:</label>
+        <select id="声骸-1" name="multiSelect">
+            <option value="22%暴击+150攻击">22%暴击+150攻击</option>
+            <option value="44%爆伤+150攻击">44%爆伤+150攻击</option>
+            <option value="30%属伤+100攻击">30%属伤+100攻击</option>
+            <option value="30%攻击+100攻击">30%攻击+100攻击</option>
+        </select>
+        <label for="声骸-2">声骸2:</label>
+        <select id="声骸-2" name="multiSelect">
+            <option value="30%属伤+100攻击">30%属伤+100攻击</option>
+            <option value="30%攻击+100攻击">30%攻击+100攻击</option>
+            <option value="22%暴击+150攻击">22%暴击+150攻击</option>
+            <option value="44%爆伤+150攻击">44%爆伤+150攻击</option>
+        </select>
+        <label for="声骸-3">声骸3:</label>
+        <select id="声骸-3" name="multiSelect">
+            <option value="30%属伤+100攻击">30%属伤+100攻击</option>
+            <option value="30%攻击+100攻击">30%攻击+100攻击</option>
+            <option value="18%攻击+2280生命">18%攻击+2280生命</option>
+        </select>
+
+        <label for="声骸-4">声骸4:</label>
+        <select id="声骸-4" name="multiSelect">
+            <option value="18%攻击+2280生命">18%攻击+2280生命</option>
+        </select>
+        <label for="声骸-5">声骸5:</label>
+        <select id="声骸-5" name="multiSelect">
+            <option value="18%攻击+2280生命">18%攻击+2280生命</option>
+        </select>
+
+
+        <h2>声骸副词条</h2>
+        <label for="声骸-暴击">暴击:</label>
+        <input type="number" id="声骸-暴击" value="42" min="0" max="52.5" step="8.4">
+        <label for="声骸-爆伤">爆伤:</label>
+        <input type="number" id="声骸-爆伤" value="84" min="0" max="105" step="16.8">
+        <label for="声骸-大攻击">大攻击:</label>
+        <input type="number" id="声骸-大攻击" value="45" min="0" max="58" step="9">
+        <label for="声骸-小攻击">小攻击:</label>
+        <input type="number" id="声骸-小攻击" value="0" min="0" max="250" step="40">
+        <label for="声骸-普攻伤害加成">普攻伤害加成:</label>
+        <input type="number" id="声骸-普攻伤害加成" value="45" min="0" max="58" step="9">
+        <label for="声骸-重击伤害加成">重击伤害加成:</label>
+        <input type="number" id="声骸-重击伤害加成" value="0" min="0" max="58" step="9">
+        <label for="声骸-共鸣技能伤害加成">共鸣技能伤害加成:</label>
+        <input type="number" id="声骸-共鸣技能伤害加成" value="0" min="0" max="58" step="9">
+        <label for="声骸-共鸣解放伤害加成">共鸣解放伤害加成:</label>
+        <input type="number" id="声骸-共鸣解放伤害加成" value="0" min="0" max="58" step="9">
+
+        <h2>其他</h2>
+        <label for="敌方等级">敌方等级:</label>
+        <input type="number" id="敌方等级" value="100" step="10">
+        <label for="敌方抗性">敌方抗性:</label>
+        <input type="number" id="敌方抗性" value="20" step="10" placeholder="深塔20/60,大世界10/40">
+
+
+        <h2>流程</h2>
+        <div class="buff-list-container">
+            <label>buff列表</label>
+            <ul id="buff_list" style="background-color: white;"></ul>
+            <div style="display: inline-block; width: 10px; height: 1em;"></div>
+        </div>
+
+        <p id="summary"></p>
+        <div id="display"></div>
+    </div>
+
+    <script>
+        const 参数设置 = {
+            '声骸-1': undefined,
+            '声骸-2': undefined,
+            '声骸-3': undefined,
+            '声骸-4': undefined,
+            '声骸-5': undefined,
+            '声骸-暴击': undefined,
+            '声骸-爆伤': undefined,
+            '声骸-大攻击': undefined,
+            '声骸-小攻击': undefined,
+            '声骸-普攻伤害加成': undefined,
+            '声骸-重击伤害加成': undefined,
+            '声骸-共鸣技能伤害加成': undefined,
+            '声骸-共鸣解放伤害加成': undefined,
+            '敌方等级': undefined,
+            '敌方抗性': undefined
+        }
+
+
+        const dps = () => {
+
+            for (const key in 参数设置) {
+                const ele = document.getElementById(key)
+                参数设置[key] = ele.value
+            }
+            const 主词条ref = {
+                '22%暴击+150攻击': { 暴击: 22, 小攻击: 150 },
+                '44%爆伤+150攻击': { 爆伤: 44, 小攻击: 150 },
+                '30%属伤+100攻击': { 增伤: 30, 小攻击: 100 },
+                '30%攻击+100攻击': { 大攻击: 30, 小攻击: 100 },
+                '18%攻击+2280生命': { 大攻击: 18 },
+            }
+            const 声骸属性 = { 声骸: { 属性: {} } }
+            for (let i = 1; i <= 5; ++i) {
+                let 配置 = 参数设置['声骸-' + i]
+                配置 = 主词条ref[配置]
+                for (const key in 配置) {
+                    声骸属性.声骸.属性[key] = (声骸属性.声骸.属性[key] || 0) + 配置[key]
+                }
+            }
+
+            for (const key of ['暴击', '爆伤', '大攻击', '小攻击', '普攻伤害加成', '重击伤害加成', '共鸣技能伤害加成', '共鸣解放伤害加成',]) {
+                let value = 参数设置['声骸-' + key]
+                value = parseFloat(value)
+                if (!value)
+                    continue
+
+                if (key.endsWith('伤害加成')) {
+                    const 配置 = { 属性: {} }
+                    声骸属性['声骸-副词条-' + key.slice(0, -4)] = 配置
+                    配置.属性.增伤 = value
+                    配置.标签 = key.slice(0, -4)
+                }
+                else {
+                    声骸属性['声骸-副词条'] = 声骸属性['声骸-副词条'] || { 属性: {} }
+                    const 配置 = 声骸属性['声骸-副词条']
+                    配置.属性[key] = value
+                }
+            }
+            console.log(声骸属性)
+
+
+            const buff_列表 = {
+
+                '角色基础': { 属性: { 暴击: 5, 爆伤: 150 } },
+                '敌方属性': { 属性: { 敌方等级: parseInt(参数设置.敌方等级), 抗性: parseInt(参数设置.敌方抗性) } },
+                '折枝': { 属性: { 等级: 90, 基础攻击: 375, 大攻击: 12, 暴击: 8 } },
+                '折枝-6攻击*3': { 属性: { 大攻击: 6 } },
+
+                // '菲比-12增伤': { 属性: { 增伤: 12 } },
+                // '菲比-星辉256加深': { 属性: { 加深: 256 }, 标签: '星辉256' },
+
+                // '椿-侵占-15普攻': { 属性: { 增伤: 15 }, 标签: '普攻', 描述: '普攻伤害加成提升15%，普攻和普攻蔓舞、普攻烬华蔓舞的抗打断能力提升。' },
+
+                // '酣梦-倍率提升50%~100%': { 属性: { 倍率提升: 1.0 }, 标签: '酣梦' },
+
+                '琼枝冰绡': { 属性: { 基础攻击: 500, 爆伤: 72, 大攻击: 12 } },
+                '琼枝冰绡-12普攻*3': { 属性: { 增伤: 12 } },
+                '琼枝冰绡-52普攻': { 属性: { 增伤: 52 } },
+                // '掣傀之手-12攻': { 属性: { 大攻击: 12 } },
+                // '裁春-10普攻*3-14s-造成普攻伤害时': { 属性: { 增伤: 10 }, 标签: '普攻', 描述: '造成普攻伤害时，自身普攻伤害加成提升10%，持续14秒，每秒可触发1次，可叠加3层；' },
+                // '裁春-40普攻-10s-协奏消耗时': { 属性: { 增伤: 40 }, 标签: '普攻', 描述: '自身的协奏能量消耗时，自身普攻伤害加成提升40%，持续10秒' },
+
+                '协同套加4C': { 属性: { 增伤: 80 + 30 }, 标签: '协同' },
+                '协同套加4C-冰': { 属性: { 增伤: 12 } },
+                // '2件套': { 属性: { 增伤: 10 }, 标签: '衍射' },
+                // '4件套-15光伤': { 属性: { 增伤: 15 }, 标签: '衍射' },
+                // '4件套-20暴击': { 属性: { 暴击: 20 }, 标签: '衍射' },
+                // '沉日劫明-7.5湮灭*4-15s-普攻或重击时': { 属性: { 增伤: 7.5 }, 标签: '湮灭', 描述: '使用普攻或重击时，湮灭伤害提升7.5%，该效果可叠加四层，持续15秒' },
+                // '梦魇光鸟': { 属性: { 增伤: 12 }, 标签: '衍射' },
+                // '梦魇·无冠者-12普攻': { 属性: { 增伤: 12 }, 标签: '普攻' },
+                // '梦魇光鸟-100增伤': { 属性: { 增伤: 100 }, 标签: '梦魇光鸟增伤' },
+
+                // '散华-38普攻加深-14s': { 属性: { 加深: 38 }, 标签: '普攻', 描述: '持续14秒' },
+                // '散华-20攻-20s-6链': { 属性: { 大攻击: 20 }, 描述: '引爆【冰棱】或【冰川】后，队伍中的角色攻击提升10%，持续20秒，可叠加2层。' },
+
+                '守岸人-12.5暴击': { 属性: { 暴击: 12.5 }, 描述: '星域持续时间30秒' },
+                '守岸人-25爆伤': { 属性: { 爆伤: 25 }, 描述: '星域持续时间30秒' },
+                '守岸人-15加深': { 属性: { 加深: 15 }, 描述: '队伍中的角色全伤害加深15%。最多存在30秒' },
+                // '维里奈-20攻': { 属性: { 大攻击: 20 } },
+
+
+                // '轻云出月-22.5攻-15s': { 属性: { 大攻击: 22.5 }, 描述: '使用延奏技能后，下一个登场的共鸣者攻击提升22.5%，持续15秒' },
+                // '无常凶鹭-12增伤-15s': { 属性: { 增伤: 12 }, 描述: '下一个变奏登场的角色伤害提升12%，持续15秒。技能冷却：20秒' },
+
+                '隐世回光-15攻-30s': { 属性: { 大攻击: 15 }, 描述: '自身为友方提供治疗时，全队共鸣者攻击提升15%，持续30秒' },
+                '无归的谬误-10攻-20s': { 属性: { 大攻击: 10 }, 描述: '全队角色攻击提升10%，持续20秒。技能冷却：20秒' },
+
+                ...声骸属性,
+
+                // '光主减抗': { 属性: { 抗性: -10 } }
+                // '深塔-30攻': { 属性: { 大攻击: 30 }, 描述: '角色受到治疗时，全队攻击提升30%，持续20秒' },
+
+            }
+
+            console.log(Object.keys(buff_列表))
+
+            const display_ele = document.getElementById('display')
+            display_ele.textContent = ''
+            const buff_list_ele = document.getElementById('buff_list')
+
+            buff_list_ele.onclick = (e) => {
+                console.log(e.target.dataset.buff_name)
+            }
+
+            for (const buff_name in buff_列表) {
+                const li = document.createElement('li')
+                buff_list_ele.appendChild(li)
+                li.innerHTML = '<a style="color: darkblue">' + buff_name + '</a>: ' + JSON.stringify(buff_列表[buff_name])
+                li.dataset.buff_name = buff_name
+            }
+
+            const buff_总结 = {} // { tag: { buff列表: {...}, 属性: {...} } }
+
+            const buff_统计 =
+                Object.fromEntries(Object.entries(buff_列表).map(kv => [kv[0], 0])) // { buff_name: buff_count }
+
+            const add_buff = (buff_name, diff = 1) => {
+                const buff = buff_列表[buff_name]
+                const buff适用标签 = buff['标签'] || null
+                const 对应标签buff总结 = buff_总结[buff适用标签] || { buff统计: {}, 属性: {} }
+                buff_总结[buff适用标签] = 对应标签buff总结
+
+                {
+                    // 显示
+                    const p_ele = document.createElement('p')
+                    p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${JSON.stringify(buff)}`
+                    display_ele.appendChild(p_ele)
+                }
+                {
+                    const tmp = 对应标签buff总结.buff统计
+                    tmp[buff_name] = (tmp[buff_name] || 0) + diff
+                    buff_统计[buff_name] += diff
+                }
+
+                for (const [buff_key, buff_value] of Object.entries(buff['属性'])) {
+                    对应标签buff总结.属性[buff_key] = (对应标签buff总结.属性[buff_key] || 0) + diff * buff_value
+                }
+            }
+
+            let 倍率_sum = 0
+            let 伤害_sum = 0
+
+            // 对于每一种buff的处理方式, 按此顺序执行！按此顺序执行！
+            const update_buff = new Map([
+                ['倍率', (乘区, value = 0) => { 乘区.倍率 = value }],
+                ['倍率提升', (乘区, value = 0) => { 乘区.倍率 *= (1 + value) }],
+                ['倍率增加', (乘区, value = 0) => { 乘区.倍率 += value }],
+                ['基础攻击', (乘区, value = 0) => { 乘区.基础攻击 = value }],
+                ['大攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.基础攻击 * (1 + value / 100) }],
+                ['小攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.攻击 + value }],
+                ['暴击', (乘区, value = 0) => { 乘区.暴击 = value / 100 }],
+                ['爆伤', (乘区, value = 0) => { 乘区.爆伤 = value / 100 }],
+                ['增伤', (乘区, value = 0) => { 乘区.增伤 = value / 100 + 1 }],
+                ['加深', (乘区, value = 0) => { 乘区.加深 = value / 100 + 1 }],
+                ['抗性', (乘区, value = 0) => { 乘区.抗性 = 1 - value / 100 }],
+                ['敌方等级', (乘区, value) => { 乘区.防御 = (99 + value) }],
+                ['减防', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
+                ['无视防御', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
+                ['等级', (乘区, value) => { 乘区.防御 = (value + 100) / (value + 100 + 乘区.防御) }],
+            ])
+
+            // 对于浮点数x, 保留n位小数, 返回float
+            const my_toFixed = (x, n) => parseFloat((x).toFixed(n))
+            const my_toPrecision = (x, n) => parseFloat((x).toPrecision(n))
+
+            const add_action = (action_name, 倍率, ...tags) => {
+                const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
+                update_buff.keys().forEach(element => {
+                    适用buff总结.set(element, undefined)
+                });
+                适用buff总结.set('倍率', 倍率)
+
+                for (const tag of [null, ...tags]) {
+                    if (!buff_总结[tag])
+                        continue
+                    for (const [buff_key, buff_value] of Object.entries(buff_总结[tag].属性)) {
+                        const tmp = 适用buff总结.get(buff_key)
+                        适用buff总结.set(buff_key, tmp ? tmp + buff_value : buff_value)
+                    }
+                }
+
+                const 所有乘区 = {}
+
+                for (const [buff类别, buff值] of 适用buff总结.entries()) {
+                    if (buff值)
+                        update_buff.get(buff类别)(所有乘区, buff值)
+                    else
+                        update_buff.get(buff类别)(所有乘区)
+                }
+
+                let 不暴击伤害 = 1
+                for (const 乘区 in 所有乘区) {
+                    if (!['基础攻击', '暴击', '爆伤'].includes(乘区))
+                        不暴击伤害 *= 所有乘区[乘区]
+                }
+
+                const 暴击伤害 = 不暴击伤害 * 所有乘区.爆伤
+                const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 所有乘区.暴击) + 不暴击伤害
+
+                倍率_sum += 所有乘区.倍率
+                伤害_sum += 伤害期望
+
+                for (const [乘区, 精度] of Object.entries({ 攻击: 5, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
+                    所有乘区[乘区] = my_toPrecision(所有乘区[乘区], 精度)
+
+                const 伤害展示 = Object.fromEntries(Object.entries({ 伤害期望, 暴击伤害, 不暴击伤害 }).map((kv) => [kv[0], my_toPrecision(kv[1], 6)]))
+
+                {
+                    const h_ele = document.createElement('p')
+                    h_ele.classList.add('action-title')
+                    h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
+                    const p_ele = document.createElement('p')
+                    p_ele.classList.add('action-detail')
+                    p_ele.innerHTML = JSON.stringify(所有乘区) + '\n标签: ' + tags
+
+                    const buff_ele = document.createElement('pre')
+                    buff_ele.classList.add('action-buff')
+                    buff_ele.textContent = 'buff统计: ' + JSON.stringify(buff_统计, null, 4)
+
+                    const container = document.createElement('div')
+                    container.classList.add('action-container')
+                    container.appendChild(h_ele)
+                    container.appendChild(p_ele)
+                    container.appendChild(buff_ele)
+
+                    display_ele.appendChild(container)
+                }
+            }
+
+
+
+            add_buff("角色基础")
+            add_buff("敌方属性")
+            add_buff("折枝")
+            add_buff("折枝-6攻击*3")
+            add_buff("琼枝冰绡")
+            // add_buff("琼枝冰绡-12普攻*3")
+            add_buff("琼枝冰绡-52普攻")
+            add_buff("守岸人-15加深")
+            add_buff("守岸人-12.5暴击")
+            add_buff("守岸人-25爆伤")
+            add_buff("隐世回光-15攻-30s")
+            add_buff("无归的谬误-10攻-20s")
+
+            // add_buff("协同套加4C")
+            // add_buff("协同套加4C-冰")
+            
+
+            for (const key in buff_列表) {
+                if (!key.startsWith('声骸'))
+                    continue
+                add_buff(key)
+            }
+
+            for (const key in buff_列表) {
+                if (!key.startsWith('深塔'))
+                    continue
+                add_buff(key)
+            }
+
+            add_action('test', 1, '普攻')
+            add_action('A1', 0.4176 * 2, '普攻')
+            add_action('A2', 0.2055 * 5, '普攻')
+            add_action('A3', 1.3361, '普攻')
+
+            add_action('变奏', 0.8616 * 3, '普攻')
+
+
+            add_action('E1', 0.9842 * 3, '普攻')
+            add_action('Z', 0.8301 * 3)
+            add_action('E2', 2.9822, '普攻')
+            add_action('E3', 1.1929 * 3, '普攻')
+            add_action('R', 0.6521 * 21, '普攻', '协同')
+
+
+
+            console.log(buff_总结)
+
+            倍率_sum = my_toFixed(倍率_sum, 4)
+            伤害_sum = my_toFixed(伤害_sum, 1)
+
+            document.getElementById('summary').textContent =
+                `总倍率: ${倍率_sum}\n总伤害: ${伤害_sum}`
+
+        }
+
+
+        for (const key in 参数设置) {
+            const ele = document.getElementById(key)
+            ele.onchange = dps
+        }
+
+        dps()
+
+    </script>
+</body>
+
+</html>
