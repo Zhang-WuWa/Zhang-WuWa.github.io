@@ -7,4 +7,5 @@ const config = [
     'configs/phobe_822k.js',
     'configs/phobe_20.js',
     'configs/zhezhi_20.js',
+    'configs/encore.js',
 ]
