@@ -222,6 +222,9 @@
                     配置.属性[key] = value
                 }
             }
+
+            for (const k in 声骸属性)
+                声骸属性[k].标签 = 声骸属性[k].标签 ? 声骸属性[k].标签 + ',拉表' : '拉表'
             console.log('声骸属性', 声骸属性)
 
             Object.assign(this.buff_列表, 声骸属性)
@@ -252,11 +255,37 @@
 
         }
 
+        const 标签maskGetter = {
+            enum: { max: 0 },
+            get_order: function (标签) {
+                if (this.enum[标签] === undefined)
+                    return this.enum[标签] = (this.enum.max++)
+                return this.enum[标签]
+            },
+            get_mask: function (标签组合) {
+                if (标签组合 === undefined)
+                    return 0
+                标签组合 = 标签组合.split(',')
+                let res = 0
+                for (const 标签 of 标签组合)
+                    res |= (1 << this.get_order(标签))
+                return res
+            },
+
+        }
+
         const add_buff = function (buff_name, diff = 1) {
             const buff = this.buff_列表[buff_name]
-            const buff适用标签 = buff['标签'] || null
-            const 对应标签buff总结 = this.buff_总结[buff适用标签] || { buff统计: {}, 属性: {} }
-            this.buff_总结[buff适用标签] = 对应标签buff总结
+            let buff适用标签
+            {
+                const 标签 = buff['标签']
+                const mask = 标签maskGetter.get_mask(标签)
+                buff适用标签 = mask.toString(2)
+                this.buff_总结[buff适用标签] = this.buff_总结[buff适用标签] || {
+                    mask: mask, 标签: buff['标签'], buff统计: {}, 属性: {}
+                }
+            }
+            const 对应标签buff总结 = this.buff_总结[buff适用标签]
 
             {
                 // 显示
@@ -283,7 +312,7 @@
             ['倍率增加', (乘区, value = 0) => { 乘区.倍率 += value }],
             ['基础攻击', (乘区, value = 0) => { 乘区.基础攻击 = value }],
             ['大攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.基础攻击 * (1 + value / 100) }],
-            ['小攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.攻击 + value }],
+            ['小攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.攻击 + value; 乘区.攻击系数 = 乘区.攻击 / 乘区.基础攻击 }],
             ['暴击', (乘区, value = 0) => { 乘区.暴击 = value / 100 }],
             ['爆伤', (乘区, value = 0) => { 乘区.爆伤 = value / 100 }],
             ['增伤', (乘区, value = 0) => { 乘区.增伤 = value / 100 + 1 }],
@@ -300,16 +329,23 @@
         const my_toPrecision = (x, n) => parseFloat((x).toPrecision(n))
 
         const add_action = function (action_name, 倍率, ...tags) {
+            if (action_name.startsWith('/check'))
+                tags.push('检查')
+            else
+                tags.push('拉表')
             const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
             update_buff.keys().forEach(element => {
                 适用buff总结.set(element, undefined)
             });
             适用buff总结.set('倍率', 倍率)
 
-            for (const tag of [null, ...tags]) {
-                if (!this.buff_总结[tag])
+            const 当前动作mask = 标签maskGetter.get_mask(tags.join(','))
+
+            for (const tag in this.buff_总结) {
+                const data = this.buff_总结[tag]
+                if ((当前动作mask & data.mask) !== data.mask)
                     continue
-                for (const [buff_key, buff_value] of Object.entries(this.buff_总结[tag].属性)) {
+                for (const [buff_key, buff_value] of Object.entries(data.属性)) {
                     const tmp = 适用buff总结.get(buff_key)
                     适用buff总结.set(buff_key, tmp ? tmp + buff_value : buff_value)
                 }
@@ -326,7 +362,7 @@
 
             let 不暴击伤害 = 1
             for (const 乘区 in 所有乘区) {
-                if (!['基础攻击', '暴击', '爆伤'].includes(乘区))
+                if (!['基础攻击', '攻击系数', '暴击', '爆伤'].includes(乘区))
                     不暴击伤害 *= 所有乘区[乘区]
             }
 
@@ -336,7 +372,7 @@
             this.倍率_sum += 所有乘区.倍率
             this.伤害_sum += 伤害期望
 
-            for (const [乘区, 精度] of Object.entries({ 攻击: 5, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
+            for (const [乘区, 精度] of Object.entries({ 攻击: 5, 攻击系数: 4, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
                 所有乘区[乘区] = my_toPrecision(所有乘区[乘区], 精度)
 
             const 伤害展示 = Object.fromEntries(Object.entries({ 伤害期望, 暴击伤害, 不暴击伤害 }).map((kv) => [kv[0], my_toPrecision(kv[1], 6)]))
