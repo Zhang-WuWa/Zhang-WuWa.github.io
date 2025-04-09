@@ -331,7 +331,7 @@
         const add_action = function (action_name, 倍率, ...tags) {
             let 验证伤害 = undefined
             if (action_name.startsWith('/check')) {
-                tags.push('检查')
+                tags.push('实战')
                 let tmp = action_name.split(' ')
                 tmp = tmp[tmp.length - 1]
                 tmp = parseFloat(tmp)
