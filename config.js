@@ -8,4 +8,5 @@ const config = [
     'configs/phobe_20.js',
     'configs/zhezhi_20.js',
     'configs/encore.js',
+    'configs/jinxi.js',
 ]

@@ -329,8 +329,14 @@
         const my_toPrecision = (x, n) => parseFloat((x).toPrecision(n))
 
         const add_action = function (action_name, 倍率, ...tags) {
-            if (action_name.startsWith('/check'))
+            let 验证伤害 = undefined
+            if (action_name.startsWith('/check')) {
                 tags.push('检查')
+                let tmp = action_name.split(' ')
+                tmp = tmp[tmp.length - 1]
+                tmp = parseFloat(tmp)
+                验证伤害 = tmp
+            }
             else
                 tags.push('拉表')
             const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
@@ -381,6 +387,14 @@
                 const h_ele = document.createElement('p')
                 h_ele.classList.add('action-title')
                 h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
+                if (验证伤害) {
+                    const rtol = Math.abs(暴击伤害 * 1e4 - 验证伤害) / 验证伤害
+                    console.log(rtol, 暴击伤害, 验证伤害)
+                    if (rtol >= 0.01)
+                        h_ele.style.backgroundColor = 'red'
+                    else
+                        h_ele.style.backgroundColor = 'skyblue'
+                }
                 const p_ele = document.createElement('p')
                 p_ele.classList.add('action-detail')
                 p_ele.innerHTML = JSON.stringify(所有乘区) + '<br/>标签: ' + tags
