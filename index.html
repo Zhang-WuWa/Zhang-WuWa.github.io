@@ -386,15 +386,17 @@
             {
                 const h_ele = document.createElement('p')
                 h_ele.classList.add('action-title')
-                h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
                 if (验证伤害) {
-                    const rtol = Math.abs(暴击伤害 * 1e4 - 验证伤害) / 验证伤害
+                    const rtol = (暴击伤害 * 1e4 - 验证伤害) / 验证伤害
                     console.log(rtol, 暴击伤害, 验证伤害)
-                    if (rtol >= 0.01)
+                    if (Math.abs(rtol) >= 0.01)
                         h_ele.style.backgroundColor = 'red'
                     else
                         h_ele.style.backgroundColor = 'skyblue'
+                    action_name += ` 误差${(rtol * 100).toPrecision(2)}%`
+
                 }
+                h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
                 const p_ele = document.createElement('p')
                 p_ele.classList.add('action-detail')
                 p_ele.innerHTML = JSON.stringify(所有乘区) + '<br/>标签: ' + tags
@@ -462,6 +464,10 @@
             }
 
             document.title = 当前练度流程
+            const url = new URL(window.location.href)
+            url.searchParams.set('config', 当前练度流程)
+            window.history.pushState({}, '', url.href)
+
             正在切换配置 = false
             更新页面()
         }
@@ -469,7 +475,9 @@
         const first_run = () => {
 
             const form_ele = document.getElementById('练度流程')
-            let first = true
+
+            const config = (new URL(window.location.href)).searchParams.get('config')
+
             for (const 练度流程name in 练度流程列表) {
                 const input = document.createElement('input')
                 input.type = 'radio'
@@ -477,9 +485,8 @@
                 input.name = "练度流程"
                 input.value = 练度流程name
                 input.onchange = () => 切换配置(练度流程name)
-                if (first) {
+                if (练度流程name == config) {
                     input.checked = true
-                    first = false
                 }
                 const label = document.createElement('label')
                 label.htmlFor = 练度流程name
@@ -487,7 +494,9 @@
                 form_ele.appendChild(input)
                 form_ele.appendChild(label)
             }
-            切换配置(Object.keys(练度流程列表)[0])
+
+            if (config)
+                切换配置(config)
         }
         {
             let loadcount = 0
