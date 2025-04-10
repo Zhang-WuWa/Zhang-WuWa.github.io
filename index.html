@@ -388,7 +388,6 @@
                 h_ele.classList.add('action-title')
                 if (验证伤害) {
                     const rtol = (暴击伤害 * 1e4 - 验证伤害) / 验证伤害
-                    console.log(rtol, 暴击伤害, 验证伤害)
                     if (Math.abs(rtol) >= 0.01)
                         h_ele.style.backgroundColor = 'red'
                     else
@@ -454,6 +453,10 @@
         }
 
         const 切换配置 = (新配置) => {
+
+            if (练度流程列表[新配置] === undefined)
+                return
+
             正在切换配置 = true
             console.log('切换至', 新配置)
             当前练度流程 = 新配置
