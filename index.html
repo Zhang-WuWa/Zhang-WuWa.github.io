@@ -66,24 +66,35 @@
 
         .action-detail {
             margin: 5px 0 16px;
+            color: gray;
         }
 
         .action-buff {
             position: absolute;
-            top: 100%;
+            left: 32em;
             visibility: hidden;
-            background-color: skyblue;
+            background-color: RGB(248, 248, 248);
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 3PX;
+            padding: 0 1em;
             z-index: 2;
+            overflow: auto;
+            max-height: 80vh;
         }
 
         .action-container:hover>.action-buff {
             visibility: visible;
         }
+
+        td:last-child {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div style="padding: 0 20px;">
         <h2>说明</h2>
         <div>
             <form id="练度流程">
@@ -312,16 +323,33 @@
             ['倍率增加', (乘区, value = 0) => { 乘区.倍率 += value }],
             ['基础攻击', (乘区, value = 0) => { 乘区.基础攻击 = value }],
             ['大攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.基础攻击 * (1 + value / 100) }],
-            ['小攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.攻击 + value; 乘区.攻击系数 = 乘区.攻击 / 乘区.基础攻击 }],
+            ['小攻击', (乘区, value = 0) => {
+                乘区.攻击 = 乘区.攻击 + value
+                乘区.攻击系数 = 乘区.攻击 / 乘区.基础攻击
+                乘区.不暴击伤害 = 乘区.倍率 * 乘区.攻击
+            }],
             ['暴击', (乘区, value = 0) => { 乘区.暴击 = value / 100 }],
             ['爆伤', (乘区, value = 0) => { 乘区.爆伤 = value / 100 }],
-            ['增伤', (乘区, value = 0) => { 乘区.增伤 = value / 100 + 1 }],
-            ['加深', (乘区, value = 0) => { 乘区.加深 = value / 100 + 1 }],
-            ['抗性', (乘区, value) => { 乘区.抗性 = 1 - value / 100 }],
-            ['敌方等级', (乘区, value) => { 乘区.防御 = (99 + value) }],
+            ['增伤', (乘区, value = 0) => {
+                乘区.增伤 = value / 100 + 1
+                乘区.不暴击伤害 *= 乘区.增伤
+            }],
+            ['加深', (乘区, value = 0) => {
+                乘区.加深 = value / 100 + 1
+                乘区.不暴击伤害 *= 乘区.加深
+            }],
+            // 抗性和地方等级默认0，方便看出错误
+            ['抗性', (乘区, value = 0) => {
+                乘区.抗性 = 1 - value / 100
+                乘区.不暴击伤害 *= 乘区.抗性
+            }],
+            ['敌方等级', (乘区, value = 0) => { 乘区.防御 = (99 + value) }],
             ['减防', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
             ['无视防御', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
-            ['等级', (乘区, value = 90) => { 乘区.防御 = (value + 100) / (value + 100 + 乘区.防御) }],
+            ['等级', (乘区, value = 90) => {
+                乘区.防御 = (value + 100) / (value + 100 + 乘区.防御)
+                乘区.不暴击伤害 *= 乘区.防御
+            }],
         ])
 
         // 对于浮点数x, 保留n位小数, 返回float
@@ -333,12 +361,16 @@
             if (action_name.startsWith('/check')) {
                 tags.push('实战')
                 let tmp = action_name.split(' ')
-                tmp = tmp[tmp.length - 1]
-                tmp = parseFloat(tmp)
-                验证伤害 = tmp
+                验证伤害 = parseFloat(tmp[tmp.length - 1])
+                if (验证伤害) {
+                    tmp[tmp.length - 1] = `${验证伤害 / 1e4}(w)`
+                    action_name = tmp.join(' ')
+                }
             }
             else
                 tags.push('拉表')
+
+            // 格式为 { 大攻击: xxx, 小攻击: xxx, 增伤: xxx, ... }
             const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
             update_buff.keys().forEach(element => {
                 适用buff总结.set(element, undefined)
@@ -347,10 +379,16 @@
 
             const 当前动作mask = 标签maskGetter.get_mask(tags.join(','))
 
+            const 适用buff列表 = { ...this.buff_统计 }
+            for (const buff in 适用buff列表)
+                适用buff列表[buff] = [适用buff列表[buff], '不适用']
+
             for (const tag in this.buff_总结) {
                 const data = this.buff_总结[tag]
                 if ((当前动作mask & data.mask) !== data.mask)
                     continue
+                for (const buff in data.buff统计)
+                    适用buff列表[buff][1] = '适用'
                 for (const [buff_key, buff_value] of Object.entries(data.属性)) {
                     const tmp = 适用buff总结.get(buff_key)
                     适用buff总结.set(buff_key, tmp ? tmp + buff_value : buff_value)
@@ -366,11 +404,8 @@
                     update_buff.get(buff类别)(所有乘区)
             }
 
-            let 不暴击伤害 = 1
-            for (const 乘区 in 所有乘区) {
-                if (!['基础攻击', '攻击系数', '暴击', '爆伤'].includes(乘区))
-                    不暴击伤害 *= 所有乘区[乘区]
-            }
+            let 不暴击伤害 = 所有乘区.不暴击伤害
+            delete 所有乘区.不暴击伤害
 
             const 暴击伤害 = 不暴击伤害 * 所有乘区.爆伤
             const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 所有乘区.暴击) + 不暴击伤害
@@ -398,17 +433,26 @@
                 h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
                 const p_ele = document.createElement('p')
                 p_ele.classList.add('action-detail')
-                p_ele.innerHTML = JSON.stringify(所有乘区) + '<br/>标签: ' + tags
+                p_ele.innerHTML = JSON.stringify(所有乘区) + '<br/>标签: ' + tags.join(', ')
 
-                const buff_ele = document.createElement('pre')
+                const buff_ele = document.createElement('table')
                 buff_ele.classList.add('action-buff')
-                buff_ele.textContent = 'buff统计: ' + JSON.stringify(this.buff_统计, null, 4)
+                buff_ele.innerHTML += '<tr><th>buff</th><th>层数</th></tr>'
+                for (const buff in 适用buff列表) {
+                    const [value, 是否适用] = 适用buff列表[buff]
+                    if (是否适用 === '适用')
+                        buff_ele.innerHTML += `<tr><td>${buff}</td><td>${value}</td></tr>`
+                    else
+                        buff_ele.innerHTML += `<tr style="color: rgb(160, 160, 160);"><td>${buff}</td><td>${value}</td></tr>`
+                }
+                // buff_统计[buff] += '适用'
+                // buff_ele.textContent = 'buff统计: ' + JSON.stringify(buff_统计, null, 4)
 
                 const container = document.createElement('div')
                 container.classList.add('action-container')
+                container.appendChild(buff_ele)
                 container.appendChild(h_ele)
                 container.appendChild(p_ele)
-                container.appendChild(buff_ele)
 
                 const display_ele = document.getElementById('display')
                 display_ele.appendChild(container)
