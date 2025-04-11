@@ -30,27 +30,23 @@
 
         #buff_list {
             visibility: hidden;
-            list-style-type: none;
             position: absolute;
             margin: 0;
             top: 0;
             left: 98%;
             padding-left: 10px;
             overflow: auto;
-            height: 90vh;
+            min-width: 75vw;
+            max-height: 90vh;
+            background-color: white;
         }
 
         .buff-list-container:hover>#buff_list {
             visibility: visible;
         }
 
-        #buff_list>li {
-            min-width: 75vw;
-            cursor: default;
-            margin-top: 5px;
-        }
 
-        #buff_list>li:hover {
+        #buff_list>table>tr:hover {
             background-color: skyblue;
         }
 
@@ -81,14 +77,12 @@
             z-index: 2;
             overflow: auto;
             max-height: 80vh;
+            font-family: monospace;
+            font-size: 1.25em;
         }
 
         .action-container:hover>.action-buff {
             visibility: visible;
-        }
-
-        td:last-child {
-            text-align: center;
         }
     </style>
 </head>
@@ -161,7 +155,9 @@
         <h2>流程</h2>
         <div class="buff-list-container">
             <label>buff列表</label>
-            <ul id="buff_list" style="background-color: white;"></ul>
+            <div id="buff_list">
+                <table></table>
+            </div>
             <div style="display: inline-block; width: 10px; height: 1em;"></div>
         </div>
 
@@ -246,12 +242,12 @@
 
             const display_ele = document.getElementById('display')
             display_ele.textContent = ''
-            const buff_list_ele = document.getElementById('buff_list')
+            const buff_list_ele = document.getElementById('buff_list').firstElementChild
 
             for (const buff_name in this.buff_列表) {
-                const li = document.createElement('li')
+                const li = document.createElement('tr')
                 buff_list_ele.appendChild(li)
-                li.innerHTML = '<a style="color: darkblue">' + buff_name + '</a>: ' + JSON.stringify(this.buff_列表[buff_name])
+                li.innerHTML = '<td style="color: darkblue">' + buff_name + '</td> <td>' + my_stringfy(this.buff_列表[buff_name]) + '</td>'
                 li.dataset.buff_name = buff_name
             }
 
@@ -263,6 +259,9 @@
 
             this.倍率_sum = 0
             this.伤害_sum = 0
+
+            for (const buff in this.buff_列表)
+                this.add_buff(buff, 0, false)
 
         }
 
@@ -285,7 +284,7 @@
 
         }
 
-        const add_buff = function (buff_name, diff = 1) {
+        const add_buff = function (buff_name, diff = 1, display = true) {
             const buff = this.buff_列表[buff_name]
             let buff适用标签
             {
@@ -299,13 +298,6 @@
             const 对应标签buff总结 = this.buff_总结[buff适用标签]
 
             {
-                // 显示
-                const p_ele = document.createElement('p')
-                p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${JSON.stringify(buff)}`
-                const display_ele = document.getElementById('display')
-                display_ele.appendChild(p_ele)
-            }
-            {
                 const tmp = 对应标签buff总结.buff统计
                 tmp[buff_name] = (tmp[buff_name] || 0) + diff
                 this.buff_统计[buff_name] += diff
@@ -314,6 +306,16 @@
             for (const [buff_key, buff_value] of Object.entries(buff['属性'])) {
                 对应标签buff总结.属性[buff_key] = (对应标签buff总结.属性[buff_key] || 0) + diff * buff_value
             }
+
+            if (display) {
+                // 显示
+                const p_ele = document.createElement('p')
+                p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${my_stringfy(buff)}`
+                const display_ele = document.getElementById('display')
+                display_ele.appendChild(p_ele)
+            }
+
+
         }
 
         // 对于每一种buff的处理方式, 按此顺序执行！按此顺序执行！
@@ -355,6 +357,14 @@
         // 对于浮点数x, 保留n位小数, 返回float
         const my_toFixed = (x, n) => parseFloat((x).toFixed(n))
         const my_toPrecision = (x, n) => parseFloat((x).toPrecision(n))
+        const my_stringfy = (v) => {
+            if (v instanceof Array)
+                return '[' + v.map((x) => my_stringfy(x)).join(', ') + ']'
+            if (v instanceof Object)
+                return '{' + Object.entries(v).map((xy) => `${my_stringfy(xy[0])}: ${my_stringfy(xy[1])}`).join(', ') + '}'
+
+            return JSON.stringify(v)
+        }
 
         const add_action = function (action_name, 倍率, ...tags) {
             let 验证伤害 = undefined
@@ -430,23 +440,22 @@
                     action_name += ` 误差${(rtol * 100).toPrecision(2)}%`
 
                 }
-                h_ele.innerHTML = action_name + '<br/>' + JSON.stringify(伤害展示)
+                h_ele.innerHTML = action_name + '<br/>' + my_stringfy(伤害展示)
                 const p_ele = document.createElement('p')
                 p_ele.classList.add('action-detail')
-                p_ele.innerHTML = JSON.stringify(所有乘区) + '<br/>标签: ' + tags.join(', ')
+                p_ele.innerHTML = my_stringfy(所有乘区) + '<br/>标签: ' + tags.join(', ')
 
-                const buff_ele = document.createElement('table')
+                const buff_ele = document.createElement('div')
                 buff_ele.classList.add('action-buff')
-                buff_ele.innerHTML += '<tr><th>buff</th><th>层数</th></tr>'
+
+                buff_ele.innerHTML += `buff统计:<br/>`
                 for (const buff in 适用buff列表) {
                     const [value, 是否适用] = 适用buff列表[buff]
                     if (是否适用 === '适用')
-                        buff_ele.innerHTML += `<tr><td>${buff}</td><td>${value}</td></tr>`
+                        buff_ele.innerHTML += `&nbsp;<span>+${value} ${buff}</span><br/>`
                     else
-                        buff_ele.innerHTML += `<tr style="color: rgb(160, 160, 160);"><td>${buff}</td><td>${value}</td></tr>`
+                        buff_ele.innerHTML += `&nbsp;<span style="color: rgb(160, 160, 160);">+${value} ${buff}</span><br/>`
                 }
-                // buff_统计[buff] += '适用'
-                // buff_ele.textContent = 'buff统计: ' + JSON.stringify(buff_统计, null, 4)
 
                 const container = document.createElement('div')
                 container.classList.add('action-container')
