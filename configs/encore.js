@@ -117,38 +117,38 @@
 
         // 轻云暗鸟 15-1.4-10=3.6秒 延奏两次伤害能吃,Q两次伤害能吃
 
-        this.add_action('/check 变奏 10154', 1 / 1e4)
+        this.add_action('/check 变奏 10154', 1)
         this.add_action('变奏', 1.9881)
 
         this.add_buff("安可-10增伤")
 
-        this.add_action('/check E3 6954', 0.6332 / 1e4, '共鸣技能')
+        this.add_action('/check E3 6954', 0.6332, '共鸣技能')
 
         this.add_action('E3 E3', 0.6332 * 4 * 2, '共鸣技能')
         this.add_action('A4', 1.9401 * 3, '普攻')
 
         this.add_buff("掣傀之手-12攻-2/4", 2)
 
-        // this.add_action('/check A1 15616', 0.9018 / 1e4, '普攻')
-        // this.add_action('/check A2 9766', 0.5640 / 1e4, '普攻')
-        // this.add_action('/check A3 11427', 0.6599 / 1e4, '普攻')
-        this.add_action('/check A4 33594', 1.9401 / 1e4, '普攻')
+        // this.add_action('/check A1 15616', 0.9018, '普攻')
+        // this.add_action('/check A2 9766', 0.5640, '普攻')
+        // this.add_action('/check A3 11427', 0.6599, '普攻')
+        this.add_action('/check A4 33594', 1.9401, '普攻')
 
         this.add_action('AAAA AAA AAAA', 0.9018 * 2 * 3 + 0.5640 * 3 * 3 + 0.6599 * 4 * 3 + 1.9401 * 3 * 2, '普攻')
 
         this.add_buff("安可-10增伤-10s", -1)
 
         this.add_buff("掣傀之手-12攻-2/4", 2)
-        this.add_action('/check 延奏 10326', 1.7676 / 2 / 1e4)
+        this.add_action('/check 延奏 10326', 1.7676 / 2)
 
         this.add_buff("掣傀之手-12攻-2/4", -2)
         this.add_buff("掣傀之手-12攻-2/4", -2)
         this.add_buff("深塔-6增伤", 1)
 
-        this.add_action('/check 延奏 9216', 1.7676 / 2 / 1e4)
+        this.add_action('/check 延奏 9216', 1.7676 / 2)
 
-        this.add_action('/check Q 12639', 2.4240 / 2 / 1e4)
-        this.add_action('/check Q 14745', 2.8280 / 2 / 1e4)
+        this.add_action('/check Q 12639', 2.4240 / 2)
+        this.add_action('/check Q 14745', 2.8280 / 2)
 
         this.add_action('Q', 2.4240)
         this.add_action('Q', 2.8280)
@@ -172,25 +172,25 @@
 
         this.add_action('变奏', 1.9881)
 
-        this.add_action('/check E3 6954', 0.6332 / 1e4, '共鸣技能')
+        this.add_action('/check E3 6954', 0.6332, '共鸣技能')
 
         this.add_action('E3 E3', 0.6332 * 4 * 2, '共鸣技能')
 
         this.add_action('A4', 1.9401 * 3, '普攻')
         this.add_buff("掣傀之手-12攻-2/4", 2)
 
-        // this.add_action('/check A1 15616', 0.9018 / 1e4, '普攻')
-        // this.add_action('/check A2 9766', 0.5640 / 1e4, '普攻')
-        // this.add_action('/check A3 11427', 0.6599 / 1e4, '普攻')
-        this.add_action('/check A4 31893', 1.9401 / 1e4, '普攻')
+        // this.add_action('/check A1 15616', 0.9018, '普攻')
+        // this.add_action('/check A2 9766', 0.5640, '普攻')
+        // this.add_action('/check A3 11427', 0.6599, '普攻')
+        this.add_action('/check A4 31893', 1.9401, '普攻')
 
         this.add_action('AAAA AAA AAAA', 0.9018 * 2 * 3 + 0.5640 * 3 * 3 + 0.6599 * 4 * 3 + 1.9401 * 3 * 2, '普攻')
 
-        // this.add_action('/check E ', 0.6618 / 1e4, '共鸣技能')
-        // this.add_action('/check E ', 2.93 / 1e4, '共鸣技能')
+        // this.add_action('/check E ', 0.6618, '共鸣技能')
+        // this.add_action('/check E ', 2.93, '共鸣技能')
         this.add_action('E ', 0.7661 * 8, '共鸣技能')
 
-        this.add_action('/check 延奏 33594', 1.7676 / 1e4)
+        this.add_action('/check 延奏 33594', 1.7676)
         this.add_action('延奏', 1.7676 * 4)
 
         console.log('buff情况', this.buff_总结)

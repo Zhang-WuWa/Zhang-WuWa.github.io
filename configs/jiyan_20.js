@@ -96,7 +96,7 @@
         this.add_buff("莫特斐-20攻")
         this.add_action('Q 10268', 2.3184, '气动')
 
-        this.add_action('/check E4级 3198', 0.6841 / 1e4, '气动', '共鸣技能')
+        this.add_action('/check E4级 3198', 0.6841, '气动', '共鸣技能')
         this.add_action('E', 1.0636 * 4, '气动', '共鸣技能')
 
         this.add_buff("飞廉之猩-12气动")
@@ -115,19 +115,19 @@
         this.add_buff("啸谷长风-30气动")
         this.add_buff("忌炎-10攻击")
 
-        this.add_action('/check 变奏1级 7500', 1 / 1e4, '气动')
+        this.add_action('/check 变奏1级 7500', 1, '气动')
         this.add_action('变奏 7500', 1.9881, '气动')
 
         this.add_buff("苍鳞千嶂-24重击", 2)
         this.add_buff("忌炎-20技能")
 
-        this.add_action('/check E4级 5785', 0.6841 / 1e4, '气动', '共鸣技能')
+        this.add_action('/check E4级 5785', 0.6841, '气动', '共鸣技能')
         this.add_action('E', 1.0636 * 4, '气动', '共鸣技能')
         this.add_action('E', 1.0636 * 4, '气动', '共鸣技能')
 
-        this.add_action('/check Z 8720', 0.6552 / 1e4, '气动', '重击')
-        this.add_action('/check R4级 12234', 0.9192 / 1e4, '气动', '重击')
-        this.add_action('/check R4级 36702', 2.7577 / 1e4, '气动', '重击')
+        this.add_action('/check Z 8720', 0.6552, '气动', '重击')
+        this.add_action('/check R4级 12234', 0.9192, '气动', '重击')
+        this.add_action('/check R4级 36702', 2.7577, '气动', '重击')
         this.add_action('R 约61179.2', 1.4291 * 2 + 4.2873, '气动', '重击')
 
         this.add_action('7Z 约488400.7', 36.6912, '气动', '重击')

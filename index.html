@@ -243,6 +243,7 @@
             const display_ele = document.getElementById('display')
             display_ele.textContent = ''
             const buff_list_ele = document.getElementById('buff_list').firstElementChild
+            buff_list_ele.innerHTML = ''
 
             for (const buff_name in this.buff_列表) {
                 const li = document.createElement('tr')
@@ -258,6 +259,7 @@
                 Object.fromEntries(Object.entries(this.buff_列表).map(kv => [kv[0], 0])) // { buff_name: buff_count }
 
             this.倍率_sum = 0
+            this.加深倍率_sum = 0
             this.伤害_sum = 0
 
             for (const buff in this.buff_列表)
@@ -368,17 +370,16 @@
 
         const add_action = function (action_name, 倍率, ...tags) {
             let 验证伤害 = undefined
+            let 仅验证 = false
             if (action_name.startsWith('/check')) {
                 tags.push('实战')
                 let tmp = action_name.split(' ')
                 验证伤害 = parseFloat(tmp[tmp.length - 1])
-                if (验证伤害) {
-                    tmp[tmp.length - 1] = `${验证伤害 / 1e4}(w)`
-                    action_name = tmp.join(' ')
-                }
+                仅验证 = true
             }
-            else
+            else {
                 tags.push('拉表')
+            }
 
             // 格式为 { 大攻击: xxx, 小攻击: xxx, 增伤: xxx, ... }
             const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
@@ -420,8 +421,11 @@
             const 暴击伤害 = 不暴击伤害 * 所有乘区.爆伤
             const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 所有乘区.暴击) + 不暴击伤害
 
-            this.倍率_sum += 所有乘区.倍率
-            this.伤害_sum += 伤害期望
+            if (!仅验证) {
+                this.倍率_sum += 所有乘区.倍率
+                this.加深倍率_sum += 所有乘区.倍率 * 所有乘区.加深
+                this.伤害_sum += 伤害期望
+            }
 
             for (const [乘区, 精度] of Object.entries({ 攻击: 5, 攻击系数: 4, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
                 所有乘区[乘区] = my_toPrecision(所有乘区[乘区], 精度)
@@ -432,7 +436,7 @@
                 const h_ele = document.createElement('p')
                 h_ele.classList.add('action-title')
                 if (验证伤害) {
-                    const rtol = (暴击伤害 * 1e4 - 验证伤害) / 验证伤害
+                    const rtol = (暴击伤害 - 验证伤害) / 验证伤害
                     if (Math.abs(rtol) >= 0.01)
                         h_ele.style.backgroundColor = 'red'
                     else
@@ -471,10 +475,11 @@
         const 总伤展示 = function () {
 
             this.倍率_sum = my_toFixed(this.倍率_sum, 4)
+            this.加深倍率_sum = my_toFixed(this.加深倍率_sum, 4)
             this.伤害_sum = my_toFixed(this.伤害_sum, 1)
 
             document.getElementById('summary').textContent =
-                `总倍率: ${this.倍率_sum}\n总伤害: ${this.伤害_sum}`
+                `总倍率: ${this.倍率_sum} 总加深倍率: ${this.加深倍率_sum} 总伤害: ${this.伤害_sum}`
         }
 
 

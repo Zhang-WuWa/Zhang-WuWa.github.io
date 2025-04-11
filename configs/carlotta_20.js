@@ -87,23 +87,23 @@
 
         this.add_buff('死与舞-缄默悼词')
 
-        this.add_action('/check 变奏1级首段 8466', 0.90 / 1e4, '冷凝')
+        this.add_action('/check 变奏1级首段 8466', 0.90, '冷凝')
         this.add_action('变奏首段', 1.7893, '冷凝')
 
         this.add_buff('解离')
 
-        this.add_action('/check 变奏1级剩余 3100', 0.30 / 1e4, '冷凝')
+        this.add_action('/check 变奏1级剩余 3100', 0.30, '冷凝')
         this.add_action('变奏剩余', .5965 * 2, '冷凝')
 
-        this.add_action('/check E9级 22642', 1.34 / 1e4, '冷凝', '共鸣技能')
-        this.add_action('/check E9级 53135', 3.1447 / 1e4, '冷凝', '共鸣技能')
+        this.add_action('/check E9级 22642', 1.34, '冷凝', '共鸣技能')
+        this.add_action('/check E9级 53135', 3.1447, '冷凝', '共鸣技能')
         this.add_action('EE', 1.4411 + 1.4411 + 1.1273 + 1.1273 + 3.3818, '冷凝', '共鸣技能')
 
         this.add_buff('揭幕者')
         this.add_buff('死与舞-缄默悼词', -1)
 
-        this.add_action('/check Z7级 7493', 0.5333 / 1e4, '冷凝', '共鸣技能')
-        this.add_action('/check Z7级最后一段 56189', 3.9992 / 1e4, '冷凝', '共鸣技能')
+        this.add_action('/check Z7级 7493', 0.5333, '冷凝', '共鸣技能')
+        this.add_action('/check Z7级最后一段 56189', 3.9992, '冷凝', '共鸣技能')
         this.add_action('Z', .6683 * 5 + 5.0121, '冷凝', '共鸣技能')
 
         this.add_buff('深塔-20攻')
@@ -111,23 +111,23 @@
         this.add_buff('死与舞-缄默悼词')
         this.add_buff('凌冽决断之心-5-释放共鸣解放')
 
-        this.add_action('/check R1 140017', 4.0271 / 1e4, '冷凝', '共鸣技能', '揭幕者')
+        this.add_action('/check R1 140017', 4.0271, '冷凝', '共鸣技能', '揭幕者')
         this.add_action('R1', 4.0271, '冷凝', '共鸣技能', '揭幕者')
 
         this.add_buff('凌冽决断之心-5-释放共鸣解放')
 
-        this.add_action('/check R2 67643', 1.8364 / 1e4, '冷凝', '共鸣技能', '揭幕者')
-        this.add_action('/check R3 237335', 6.4433 / 1e4, '冷凝', '共鸣技能', '揭幕者')
+        this.add_action('/check R2 67643', 1.8364, '冷凝', '共鸣技能', '揭幕者')
+        this.add_action('/check R3 237335', 6.4433, '冷凝', '共鸣技能', '揭幕者')
         this.add_action('4R2', (1.8364 + 0.1450 * 4) * 4, '冷凝', '共鸣技能', '揭幕者')
         this.add_action('R3', 6.4433, '冷凝', '共鸣技能', '揭幕者')
 
-        this.add_action('/check E9级 64352', 3.1447 / 1e4, '冷凝', '共鸣技能')
+        this.add_action('/check E9级 64352', 3.1447, '冷凝', '共鸣技能')
         this.add_action('EE', 1.4411 + 1.4411 + 1.1273 + 1.1273 + 3.3818, '冷凝', '共鸣技能')
 
         this.add_buff('折枝-冷凝加深', -1)
         this.add_buff('折枝-共鸣技能加深', -1)
 
-        this.add_action('/check 延奏 75170', 7.942 / 1e4, '冷凝')
+        this.add_action('/check 延奏 75170', 7.942, '冷凝')
         this.add_action('延奏', 7.942, '冷凝')
 
         this.add_buff('守岸人-领域', -1)
@@ -136,7 +136,7 @@
         this.add_buff('无常凶鹭', -1)
 
         // 4:11:79 
-        this.add_action('/check Q 推测暴击=10142*3.03= 30730.26', 4.05 / 1e4, '冷凝')
+        this.add_action('/check Q 推测暴击=10142*3.03= 30730.26', 4.05, '冷凝')
         this.add_action('Q', 4.0500, '冷凝')
 
         // this.add_buff('无归的谬误', -1)

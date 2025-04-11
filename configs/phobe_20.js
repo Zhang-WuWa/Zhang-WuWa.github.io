@@ -128,7 +128,7 @@
 
         this.add_buff('4件套-20暴击')
 
-        this.add_action('/check E 5383', 0.5824 / 1e4, '衍射', '共鸣技能')
+        this.add_action('/check E 5383', 0.5824, '衍射', '共鸣技能')
         this.add_action('E', 1.1648, '衍射', '共鸣技能')
         this.add_action('E', 1.1648, '衍射', '共鸣技能')
         this.add_action('E', 1.1648, '衍射', '共鸣技能')
@@ -147,7 +147,7 @@
         this.add_action('夏弥尔之星 约26661.3', 2.9055, '衍射', '普攻')
         this.add_action('夏弥尔之星 约26661.3', 2.9055, '衍射', '普攻')
 
-        this.add_action('/check Z 25458', 0.8269 / 1e4, '衍射', '重击', '星辉256')
+        this.add_action('/check Z 25458', 0.8269, '衍射', '重击', '星辉256')
         this.add_action('Z 约76398.9', 2.4807, '衍射', '重击', '星辉256')
         this.add_action('Z 约76398.9', 2.4807, '衍射', '重击', '星辉256')
         this.add_action('Z 约76398.9', 2.4807, '衍射', '重击', '星辉256')
@@ -157,7 +157,7 @@
 
         this.add_buff('掣傀之手-12攻', 2)
 
-        this.add_action('/check 延奏 20514', 2.3448 / 1e4, '衍射')
+        this.add_action('/check 延奏 20514', 2.3448, '衍射')
         this.add_action('延奏 约164134.1', 18.7586, '衍射')
 
 

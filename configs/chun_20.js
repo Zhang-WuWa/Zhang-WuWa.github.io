@@ -113,16 +113,16 @@
 
 
         this.add_action('变奏10级', 1.9881, '湮灭')
-        this.add_action('/check 变奏1级 7378', 1e-4, '湮灭')
+        this.add_action('/check 变奏1级 7378', 1, '湮灭')
 
         // 红AAE白ZAAE应该是必满的 9.47+8.98+24.45+22.08+9+18.96+21.1=114.04
 
         this.add_action('红A1 8892', 0.9633, '湮灭', '普攻', '酣梦')
         this.add_action('红A2 ', 0.4563 * 2, '湮灭', '普攻', '酣梦')
-        this.add_action('/check 红A2 4212', 0.4563 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 红A2 4212', 0.4563, '湮灭', '普攻', '酣梦')
 
         this.add_action('红E', 0.5261 * 5, '湮灭', '普攻')
-        this.add_action('/check 红E 4856', 0.5261 / 1e4, '湮灭', '普攻')
+        this.add_action('/check 红E 4856', 0.5261, '湮灭', '普攻')
 
         this.add_buff('散华-38普攻加深-14s')
         this.add_buff('轻云出月-22.5攻-15s')
@@ -131,18 +131,18 @@
         this.add_buff('守岸人-25爆伤')
 
         this.add_action('变奏10级', 1.9881, '湮灭', '普攻', '酣梦')
-        this.add_action('/check 变奏1级 9237', 0.0001, '湮灭')
+        this.add_action('/check 变奏1级 9237', 1, '湮灭')
         this.add_action('R', 12.0281, '湮灭', '共鸣解放')
-        this.add_action('/check R 105171', 10.3909 / 1e4, '湮灭', '共鸣解放')
+        this.add_action('/check R 105171', 10.3909, '湮灭', '共鸣解放')
 
         this.add_action('白Z', 0.8814 * 3, '湮灭', '普攻')
-        this.add_action('/check 白Z 13415', 0.8814 / 1e4, '湮灭', '普攻')
+        this.add_action('/check 白Z 13415', 0.8814, '湮灭', '普攻')
         this.add_action('白A4', 0.2470 * 5, '湮灭', '普攻')
-        this.add_action('/check 白A4 3760', 0.2470 / 1e4, '湮灭', '普攻')
+        this.add_action('/check 白A4 3760', 0.2470, '湮灭', '普攻')
         this.add_action('白A5', 0.4817 * 4, '湮灭', '普攻')
-        this.add_action('/check 白A5 7332', 0.4817 / 1e4, '湮灭', '普攻')
+        this.add_action('/check 白A5 7332', 0.4817, '湮灭', '普攻')
         this.add_action('白E', 1.1362 * 2, '湮灭', '普攻')
-        this.add_action('/check 白E 17293', 1.1362 / 1e4, '湮灭', '普攻')
+        this.add_action('/check 白E 17293', 1.1362, '湮灭', '普攻')
 
         this.add_buff('裁春-40普攻-10s-协奏消耗时')
         this.add_buff('酣梦-倍率提升50%~100%')
@@ -156,25 +156,25 @@
         this.add_action('红E', 0.5261 * 5, '湮灭', '普攻', '酣梦')
         this.add_action('白Z', 0.8814 * 3, '湮灭', '普攻', '酣梦')
         this.add_action('白A4', 0.2470 * 20, '湮灭', '普攻', '酣梦')
-        this.add_action('/check 白A4 8552', 0.2470 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 白A4 8552', 0.2470, '湮灭', '普攻', '酣梦')
 
-        this.add_action('/check 白A5 1段 16649', 0.4817 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 白A5 1段 16649', 0.4817, '湮灭', '普攻', '酣梦')
         this.add_buff('酣梦-倍率提升50%~100%', -1)
 
         this.add_action('白A5 1段', 0.4817, '湮灭', '普攻', '酣梦')
 
         this.add_buff('散华-38普攻加深-14s', -1)
-        this.add_action('/check 白A5 2/3段 6255', 0.4817 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 白A5 2/3段 6255', 0.4817, '湮灭', '普攻', '酣梦')
         this.add_action('白A5 23段', 0.4817 * 2, '湮灭', '普攻', '酣梦')
 
         this.add_buff('轻云出月-22.5攻-15s', -1)
         this.add_buff('无常凶鹭-12增伤-15s', -1)
-        this.add_action('/check 白E 1段 13170', 1.1362 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 白E 1段 13170', 1.1362, '湮灭', '普攻', '酣梦')
         this.add_action('白E 1段', 1.1362, '湮灭', '普攻', '酣梦')
         this.add_buff('裁春-40普攻-10s-协奏消耗时', -1)
-        this.add_action('/check 白A5 4段 4894', 0.4817 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 白A5 4段 4894', 0.4817, '湮灭', '普攻', '酣梦')
         this.add_action('白A5 4段', 0.4817, '湮灭', '普攻', '酣梦')
-        this.add_action('/check 白E 2段 11544', 1.1362 / 1e4, '湮灭', '普攻', '酣梦')
+        this.add_action('/check 白E 2段 11544', 1.1362, '湮灭', '普攻', '酣梦')
         this.add_action('白E 2段', 1.1362, '湮灭', '普攻', '酣梦')
 
 
@@ -182,9 +182,9 @@
         // 22.08+36=58.088
         // 9.47+8.98+1.6*25=58.45
 
-        this.add_action('/check Q 21488', 2.6460 / 1e4, '湮灭')
+        this.add_action('/check Q 21488', 2.6460, '湮灭')
         this.add_action('Q', 2.6460, '湮灭')
-        this.add_action('/check 延奏1段 26737', 3.2924 / 1e4, '湮灭')
+        this.add_action('/check 延奏1段 26737', 3.2924, '湮灭')
         this.add_action('延奏1段', 3.2924, '湮灭')
 
 
@@ -193,7 +193,7 @@
 
         this.add_buff('无归的谬误-10攻-20s', -1)
 
-        this.add_action('/check 延奏2段 32668', 4.5902 / 1e4, '湮灭')
+        this.add_action('/check 延奏2段 32668', 4.5902, '湮灭')
         this.add_action('延奏2段', 4.5902, '湮灭')
 
 

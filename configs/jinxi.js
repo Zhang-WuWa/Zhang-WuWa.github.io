@@ -88,11 +88,11 @@
 
         this.add_buff('浮星祛暗-30增伤-变奏')
 
-        this.add_action('/check 变奏 1级 5768', 0.8000 / 1e4)
+        this.add_action('/check 变奏 1级 5768', 0.8000)
         this.add_buff('时和岁稔-24共鸣', 2)
 
-        this.add_action('/check A1 8507', 0.8862 / 1e4, '共鸣技能')
-        this.add_action('/check E2 8级 9672', 1.0076 / 1e4, '共鸣技能')
+        this.add_action('/check A1 8507', 0.8862, '共鸣技能')
+        this.add_action('/check E2 8级 9672', 1.0076, '共鸣技能')
 
         this.add_action('变奏', 1.5905)
         this.add_action('E2', 0.0987 * 4 + .2959 * 4 + .3945, '共鸣技能')
@@ -113,14 +113,14 @@
 
         this.add_buff('角-16共鸣')
 
-        this.add_action('/check R 106863', 11.6622 / 1e4, '共鸣解放')
+        this.add_action('/check R 106863', 11.6622, '共鸣解放')
 
         this.add_action('变奏', 1.5905)
         this.add_action('R', 4.9981 + 11.6622, '共鸣解放')
 
-        this.add_action('/check A1 12345', 0.8862 / 1e4, '共鸣技能')
-        this.add_action('/check E 2771', 0.1989 / 1e4, '共鸣技能')
-        this.add_action('/check 角 2229', 0.1600 / 1e4, '共鸣技能')
+        this.add_action('/check A1 12345', 0.8862, '共鸣技能')
+        this.add_action('/check E 2771', 0.1989, '共鸣技能')
+        this.add_action('/check 角 2229', 0.1600, '共鸣技能')
 
         this.add_action('E2', 0.0987 * 4 + .2959 * 4 + .3945, '共鸣技能')
         this.add_action('A1', .8862, '共鸣技能')
