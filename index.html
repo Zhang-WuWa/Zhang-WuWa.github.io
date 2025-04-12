@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>椿实战25s循环126.57w</title>
+    <title>index</title>
     <style>
         .root {
             padding: 0 20px;
@@ -136,8 +136,9 @@
     <div class="root">
         <h2>说明</h2>
         <div>
+            <p>切换配置 </p>
+            <!-- 网页加载后下面这个表自动生成，原有内容清空 -->
             <form id="练度流程">
-                <p>切换配置 </p>
             </form>
         </div>
         <h2>声骸主词条</h2>
@@ -206,11 +207,22 @@
             <div style="display: inline-block; width: 10px; height: 1em;"></div>
         </div>
 
+        <!-- 网页加载后 #summary 和 #display 内容自动生成，原有内容清空 -->
         <p id="summary"></p>
         <div id="display"></div>
     </div>
 
-    <script src="config.js"></script>
+    <!-- 添加配置 -->
+    <script>
+        const 练度流程列表 = {} 
+    </script>
+    <script src="configs/carlotta_20.js"></script>
+    <script src="configs/chun_20.js"></script>
+    <script src="configs/jiyan_20.js"></script>
+    <script src="configs/phobe_20.js"></script>
+    <script src="configs/encore.js"></script>
+    <script src="configs/jinxi.js"></script>
+
     <script>
 
         const init = function () {
@@ -545,9 +557,6 @@
         }
 
 
-        const 练度流程列表 = {
-
-        }
 
         let 正在切换配置 = false
 
@@ -595,10 +604,10 @@
             更新页面()
         }
 
-        const first_run = () => {
+        {
 
             const form_ele = document.getElementById('练度流程')
-
+            form_ele.innerHTML = ''
             const config = (new URL(window.location.href)).searchParams.get('config')
 
             for (const 练度流程name in 练度流程列表) {
@@ -621,23 +630,7 @@
             if (config)
                 切换配置(config)
         }
-        {
-            let loadcount = 0
-            for (const script_path of config) {
-                const script_ele = document.createElement('script')
-                script_ele.src = script_path
-                script_ele.async = false
-                script_ele.defer = true
-                document.body.append(script_ele)
 
-                script_ele.onload = () => {
-                    console.log(script_path)
-                    loadcount += 1
-                    if (loadcount == Object.keys(config).length)
-                        first_run()
-                }
-            }
-        }
 
     </script>
 </body>
