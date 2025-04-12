@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>椿实战25s循环126.57w</title>
     <style>
+        .root {
+            padding: 0 20px;
+        }
+
         input,
         select {
             padding: 1px;
@@ -60,9 +64,50 @@
             margin-bottom: 0;
         }
 
+        /* #display {
+            background-color: #F0F4F8;
+        } */
+
+        .buff-add {
+            /* font-family: monospace; */
+            background-color: #E8F5E9;
+            font-size: 0.8em;
+            color: #2E7D32;
+            border-radius: 2px;
+            padding: 1px;
+        }
+
+        .buff-remove {
+            /* font-family: monospace; */
+            background-color: #FFCCBC;
+            font-size: 0.8em;
+            color: #2E7D32;
+            border-radius: 2px;
+        }
+
+        .demage-nocheck {
+            background-color: #E3F2FD;
+            color: #0D47A1;
+            border-radius: 2px;
+        }
+
+        .demage-correct {
+            background-color: #B3E5FC;
+            color: #01579B;
+            border-radius: 2px;
+        }
+
+        .demage-wrong {
+            background-color: #FF6F00;
+            color: #FFF3E0;
+            border-radius: 2px;
+        }
+
         .action-detail {
+            font-family: monospace;
             margin: 5px 0 16px;
-            color: gray;
+            background-color: #EEEEEE;
+            color: #616161;
         }
 
         .action-buff {
@@ -88,7 +133,7 @@
 </head>
 
 <body>
-    <div style="padding: 0 20px;">
+    <div class="root">
         <h2>说明</h2>
         <div>
             <form id="练度流程">
@@ -280,7 +325,7 @@
                 标签组合 = 标签组合.split(',')
                 let res = 0
                 for (const 标签 of 标签组合)
-                    res |= (1 << this.get_order(标签))
+                    res |= (1 << this.get_order(标签.trim()))
                 return res
             },
 
@@ -312,7 +357,13 @@
             if (display) {
                 // 显示
                 const p_ele = document.createElement('p')
-                p_ele.innerText = `${diff > 0 ? '+' : ' '}${diff} ${buff_name} ${my_stringfy(buff)}`
+                p_ele.innerText = `${diff > 0 ? '+' : ''}${diff} ${buff_name} ${my_stringfy(buff)}`
+                if (diff > 0) {
+                    p_ele.classList.add('buff-add')
+                }
+                else {
+                    p_ele.classList.add('buff-remove')
+                }
                 const display_ele = document.getElementById('display')
                 display_ele.appendChild(p_ele)
             }
@@ -371,11 +422,17 @@
         const add_action = function (action_name, 倍率, ...tags) {
             let 验证伤害 = undefined
             let 仅验证 = false
-            if (action_name.startsWith('/check')) {
-                tags.push('实战')
-                let tmp = action_name.split(' ')
-                验证伤害 = parseFloat(tmp[tmp.length - 1])
-                仅验证 = true
+            action_name = action_name.trim()
+            if (action_name.startsWith('/')) {
+                let args = action_name.split(' ')
+                if (args[0] == '/check') {
+                    tags.push('实战')
+                    验证伤害 = parseFloat(args[args.length - 1])
+                    仅验证 = true
+                }
+                else {
+                    alert('未知命令: ' + args[0])
+                }
             }
             else {
                 tags.push('拉表')
@@ -437,11 +494,16 @@
                 h_ele.classList.add('action-title')
                 if (验证伤害) {
                     const rtol = (暴击伤害 - 验证伤害) / 验证伤害
-                    if (Math.abs(rtol) >= 0.01)
-                        h_ele.style.backgroundColor = 'red'
-                    else
-                        h_ele.style.backgroundColor = 'skyblue'
-                    action_name += ` 误差${(rtol * 100).toPrecision(2)}%`
+                    if (Math.abs(rtol) >= 0.01) {
+                        h_ele.classList.add('demage-wrong')
+                    }
+                    else {
+                        h_ele.classList.add('demage-correct')
+                    }
+                    action_name += ` 误差${(rtol * 100).toFixed(2)}%`
+                }
+                else {
+                    h_ele.classList.add('demage-nocheck')
 
                 }
                 h_ele.innerHTML = action_name + '<br/>' + my_stringfy(伤害展示)
@@ -564,6 +626,8 @@
             for (const script_path of config) {
                 const script_ele = document.createElement('script')
                 script_ele.src = script_path
+                script_ele.async = false
+                script_ele.defer = true
                 document.body.append(script_ele)
 
                 script_ele.onload = () => {
