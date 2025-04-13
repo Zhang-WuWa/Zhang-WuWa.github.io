@@ -92,7 +92,7 @@
         }
 
         .demage-correct {
-            background-color: #B3E5FC;
+            background-color: #87d9ff;
             color: #01579B;
             border-radius: 2px;
         }
@@ -202,6 +202,7 @@
         <div class="buff-list-container">
             <label>buff列表</label>
             <div id="buff_list">
+                <!-- 网页加载后下面这个表自动生成，原有内容清空 -->
                 <table></table>
             </div>
             <div style="display: inline-block; width: 10px; height: 1em;"></div>
@@ -345,6 +346,8 @@
 
         const add_buff = function (buff_name, diff = 1, display = true) {
             const buff = this.buff_列表[buff_name]
+            if (buff === undefined)
+                alert(`无此buff: "${buff_name}"`)
             let buff适用标签
             {
                 const 标签 = buff['标签']
@@ -383,40 +386,41 @@
 
         }
 
-        // 对于每一种buff的处理方式, 按此顺序执行！按此顺序执行！
-        const update_buff = new Map([
-            ['倍率', (乘区, value = 0) => { 乘区.倍率 = value }],
-            ['倍率提升', (乘区, value = 0) => { 乘区.倍率 *= (1 + value) }],
-            ['倍率增加', (乘区, value = 0) => { 乘区.倍率 += value }],
-            ['基础攻击', (乘区, value = 0) => { 乘区.基础攻击 = value }],
-            ['大攻击', (乘区, value = 0) => { 乘区.攻击 = 乘区.基础攻击 * (1 + value / 100) }],
-            ['小攻击', (乘区, value = 0) => {
-                乘区.攻击 = 乘区.攻击 + value
-                乘区.攻击系数 = 乘区.攻击 / 乘区.基础攻击
-                乘区.不暴击伤害 = 乘区.倍率 * 乘区.攻击
+        // 对于每一种buff的处理方式, 严格按此顺序执行，所以使用了Map
+        const buff_handlers = new Map([
+            ['倍率', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 = value }],
+            ['倍率提升', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 *= (1 + value) }],
+            ['倍率增加', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 += value }],
+            ['基础攻击', (伤害计算细节, value = 0) => { 伤害计算细节.基础攻击 = value }],
+            ['大攻击', (伤害计算细节, value = 0) => { 伤害计算细节.攻击 = 伤害计算细节.基础攻击 * (1 + value / 100) }],
+            ['小攻击', (伤害计算细节, value = 0) => {
+                伤害计算细节.攻击 = 伤害计算细节.攻击 + value
+                伤害计算细节.攻击系数 = 伤害计算细节.攻击 / 伤害计算细节.基础攻击
+                伤害计算细节.不暴击伤害 = 伤害计算细节.倍率 * 伤害计算细节.攻击
             }],
-            ['暴击', (乘区, value = 0) => { 乘区.暴击 = value / 100 }],
-            ['爆伤', (乘区, value = 0) => { 乘区.爆伤 = value / 100 }],
-            ['增伤', (乘区, value = 0) => {
-                乘区.增伤 = value / 100 + 1
-                乘区.不暴击伤害 *= 乘区.增伤
+            ['暴击', (伤害计算细节, value = 0) => { 伤害计算细节.暴击 = value / 100 }],
+            ['爆伤', (伤害计算细节, value = 0) => { 伤害计算细节.爆伤 = value / 100 }],
+            ['增伤', (伤害计算细节, value = 0) => {
+                伤害计算细节.增伤 = value / 100 + 1
+                伤害计算细节.不暴击伤害 *= 伤害计算细节.增伤
             }],
-            ['加深', (乘区, value = 0) => {
-                乘区.加深 = value / 100 + 1
-                乘区.不暴击伤害 *= 乘区.加深
+            ['加深', (伤害计算细节, value = 0) => {
+                伤害计算细节.加深 = value / 100 + 1
+                伤害计算细节.不暴击伤害 *= 伤害计算细节.加深
             }],
             // 抗性和地方等级默认0，方便看出错误
-            ['抗性', (乘区, value = 0) => {
-                乘区.抗性 = 1 - value / 100
-                乘区.不暴击伤害 *= 乘区.抗性
+            ['抗性', (伤害计算细节, value = 0) => {
+                伤害计算细节.抗性 = 1 - value / 100
+                伤害计算细节.不暴击伤害 *= 伤害计算细节.抗性
             }],
-            ['敌方等级', (乘区, value = 0) => { 乘区.防御 = (99 + value) }],
-            ['减防', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
-            ['无视防御', (乘区, value = 0) => { 乘区.防御 *= (1 - value / 100) }],
-            ['等级', (乘区, value = 90) => {
-                乘区.防御 = (value + 100) / (value + 100 + 乘区.防御)
-                乘区.不暴击伤害 *= 乘区.防御
+            ['敌方等级', (伤害计算细节, value = 0) => { 伤害计算细节.防御 = (99 + value) }],
+            ['减防', (伤害计算细节, value = 0) => { 伤害计算细节.防御 *= (1 - value / 100) }],
+            ['无视防御', (伤害计算细节, value = 0) => { 伤害计算细节.防御 *= (1 - value / 100) }],
+            ['等级', (伤害计算细节, value = 90) => {
+                伤害计算细节.防御 = (value + 100) / (value + 100 + 伤害计算细节.防御)
+                伤害计算细节.不暴击伤害 *= 伤害计算细节.防御
             }],
+            // 可以自行添加任何buff，按合适的顺序计算
         ])
 
         // 对于浮点数x, 保留n位小数, 返回float
@@ -451,11 +455,7 @@
             }
 
             // 格式为 { 大攻击: xxx, 小攻击: xxx, 增伤: xxx, ... }
-            const 适用buff总结 = new Map(update_buff.entries().map(kv => [kv[0], undefined]))
-            update_buff.keys().forEach(element => {
-                适用buff总结.set(element, undefined)
-            });
-            适用buff总结.set('倍率', 倍率)
+            const 适用buff总计 = { 倍率 }
 
             const 当前动作mask = 标签maskGetter.get_mask(tags.join(','))
 
@@ -470,34 +470,34 @@
                 for (const buff in data.buff统计)
                     适用buff列表[buff][1] = '适用'
                 for (const [buff_key, buff_value] of Object.entries(data.属性)) {
-                    const tmp = 适用buff总结.get(buff_key)
-                    适用buff总结.set(buff_key, tmp ? tmp + buff_value : buff_value)
+                    适用buff总计[buff_key] = (适用buff总计[buff_key] || 0) + buff_value
                 }
             }
 
-            const 所有乘区 = {}
+            const 伤害计算细节 = {}
 
-            for (const [buff类别, buff值] of 适用buff总结.entries()) {
+            for (const [buff类别, buff_handler] of buff_handlers.entries()) {
+                const buff值 = 适用buff总计[buff类别]
                 if (buff值 !== undefined)
-                    update_buff.get(buff类别)(所有乘区, buff值)
+                    buff_handler(伤害计算细节, buff值)
                 else
-                    update_buff.get(buff类别)(所有乘区)
+                    buff_handler(伤害计算细节)
             }
 
-            let 不暴击伤害 = 所有乘区.不暴击伤害
-            delete 所有乘区.不暴击伤害
+            let 不暴击伤害 = 伤害计算细节.不暴击伤害
+            delete 伤害计算细节.不暴击伤害
 
-            const 暴击伤害 = 不暴击伤害 * 所有乘区.爆伤
-            const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 所有乘区.暴击) + 不暴击伤害
+            const 暴击伤害 = 不暴击伤害 * 伤害计算细节.爆伤
+            const 伤害期望 = (暴击伤害 - 不暴击伤害) * Math.min(1, 伤害计算细节.暴击) + 不暴击伤害
 
             if (!仅验证) {
-                this.倍率_sum += 所有乘区.倍率
-                this.加深倍率_sum += 所有乘区.倍率 * 所有乘区.加深
+                this.倍率_sum += 伤害计算细节.倍率
+                this.加深倍率_sum += 伤害计算细节.倍率 * 伤害计算细节.加深
                 this.伤害_sum += 伤害期望
             }
 
             for (const [乘区, 精度] of Object.entries({ 攻击: 5, 攻击系数: 4, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
-                所有乘区[乘区] = my_toPrecision(所有乘区[乘区], 精度)
+                伤害计算细节[乘区] = my_toPrecision(伤害计算细节[乘区], 精度)
 
             const 伤害展示 = Object.fromEntries(Object.entries({ 伤害期望, 暴击伤害, 不暴击伤害 }).map((kv) => [kv[0], my_toPrecision(kv[1], 6)]))
 
@@ -521,7 +521,7 @@
                 h_ele.innerHTML = action_name + '<br/>' + my_stringfy(伤害展示)
                 const p_ele = document.createElement('p')
                 p_ele.classList.add('action-detail')
-                p_ele.innerHTML = my_stringfy(所有乘区) + '<br/>标签: ' + tags.join(', ')
+                p_ele.innerHTML = my_stringfy(伤害计算细节) + '<br/>标签: ' + tags.join(', ')
 
                 const buff_ele = document.createElement('div')
                 buff_ele.classList.add('action-buff')
