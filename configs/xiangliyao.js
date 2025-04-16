@@ -1,7 +1,7 @@
 练度流程列表['xiangliyao'] = {
-    标题: '相里要',
+    标题: '相里要64.10w',
     声骸配置: {
-        "声骸-1": "22%暴击+150攻击",
+        "声骸-1": "44%爆伤+150攻击",
         "声骸-2": "30%属伤+100攻击",
         "声骸-3": "30%属伤+100攻击",
         "声骸-4": "18%攻击+2280生命",
@@ -20,7 +20,7 @@
     buff_列表: {
 
         '角色基础': { 属性: { 暴击: 5, 爆伤: 150 } },
-        // '敌方': { 属性: { 敌方等级: parseInt(参数设置.敌方等级), 抗性: parseInt(参数设置.敌方抗性) } },
+        '敌方': { 属性: {} },
         '相里要': { 属性: { 等级: 90, 基础攻击: 425 - 1, 大攻击: 12, 爆伤: 16 } },
         '相里要-固有没点': { 属性: { 大攻击: -8.4 }, 标签: '实战' },
         '诸方玄枢': { 属性: { 基础攻击: 588, 暴击: 24.3, 增伤: 12 } },
@@ -85,60 +85,72 @@
         this.add_buff("深塔-20攻")
         this.add_buff("诸方玄枢-48解放")
 
-
-
         this.add_buff("隐世回光")
         this.add_buff("彻空冥雷-5", 2)
         this.add_buff("相里要-5导电*4-用共鸣", 1)
         // 04:38:44
         this.add_buff("无归的谬误")
 
-        this.add_action('/check R 128341', 14.6606, '共鸣解放')
-
+        // this.add_action('/check R 128341', 14.6606, '共鸣解放')
 
         this.add_buff("守岸人-延奏")
-
-
         this.add_buff("长离-25解放加深")
         this.add_buff("守岸人-领域")
         this.add_buff("相里要-5导电*4-用共鸣", 1)
 
-
         // 04:29:32
         this.add_action('/check R 198497', 14.6606, '共鸣解放')
+        this.add_action("思维矩阵伤害", 14.6606, '共鸣解放')
 
         this.add_buff("长离-25解放加深", -1)
-
         this.add_buff("相里要-5导电*4-用共鸣", 1)
+
+        this.add_action("一相万殊伤害", .4959 * 3 + 1.7355 * 2)
         this.add_action('/check 下落 2471', .2187, '共鸣解放')
-        this.add_buff("相里要-5导电*4-用共鸣", 1)
-        this.add_action('/check E 29286', 2.5528, '共鸣解放')
+        this.add_action("解裂重构伤害", .2187 * 4 + .6561 * 2, '共鸣解放')
 
+        this.add_buff("相里要-5导电*4-用共鸣", 1)
+
+        this.add_action('/check E 29286', 2.5528, '共鸣解放')
         this.add_action('/check E 10982 ', .9573, '共鸣解放')
+        this.add_action("万方法则伤害", .9573 * 4 + 2.5528, '共鸣解放')
+
+        this.add_action("枢机·勘破第一段伤害", 1.1967, '普攻')
+        this.add_action("枢机·勘破第二段伤害", .6092 * 4, '普攻')
+        this.add_action("枢机·勘破第三段伤害", 1.3325 * 2, '普攻')
+        this.add_action("万方法则伤害", .9573 * 4 + 2.5528, '共鸣解放')
 
         // // 04:19:67 EE 最后两层
         // this.add_buff("相里要-5导电*4-用共鸣", 1)
 
-
-
         this.add_action('/check E 4561', .4959, '共鸣技能')
         this.add_action('/check E 15961', 1.7355, '共鸣技能')
+        this.add_action("一相万殊伤害", .4959 * 3 + 1.7355 * 2, '共鸣技能')
 
         this.add_buff("无归的谬误", -1)
 
         this.add_action('/check 下落 2405', .2187, '共鸣解放')
-        // E 49.59%*3+173.55%*2
+        this.add_action("解裂重构伤害", .2187 * 4 + .6561 * 2, '共鸣解放')
 
         this.add_buff("长离-25解放加深")
         this.add_buff("深塔-20攻", -1)
         this.add_buff("彻空冥雷-5", -1)
-        this.add_buff("相里要-5导电*4-用共鸣", -3)
+        this.add_buff("相里要-5导电*4-用共鸣", -4)
         this.add_buff("无归的谬误")
 
-        // 04:06:72 只有1层
-        this.add_action('/check E 29706', 2.5528, '共鸣解放')
+        this.add_action('/check 变奏1级 1 3356', 0.5)
+        this.add_action('变奏', .9941 * 2)
 
-        // %*4+65.61%*2
+        this.add_buff("相里要-5导电*4-用共鸣")
+
+        this.add_action('/check 变奏1级 2 3436', 0.5)
+
+        // 04:06:72 只有1层
+        this.add_action('/check E 11140', .9573, '共鸣解放')
+        this.add_action('/check E 29706', 2.5528, '共鸣解放')
+        this.add_action("万方法则伤害", .9573 * 4 + 2.5528, '共鸣解放')
+        this.add_action('/check Q 27828', 4.05)
+        this.add_action('Q', 4.05)
     }
 
 }
