@@ -509,7 +509,7 @@
                 h_ele.classList.add('action-title')
                 if (验证伤害) {
                     const rtol = (暴击伤害 - 验证伤害) / 验证伤害
-                    if (Math.abs(rtol) >= 0.01) {
+                    if (Math.abs(rtol) >= 0.001) {
                         h_ele.classList.add('demage-wrong')
                     }
                     else {
