@@ -224,6 +224,7 @@
     <script src="configs/encore.js"></script>
     <script src="configs/jinxi.js"></script>
     <script src="configs/xiangliyao.js"></script>
+    <script src="configs/changli.js"></script>
 
     <script>
 
@@ -391,7 +392,7 @@
         const buff_handlers = new Map([
             ['倍率', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 = value }],
             ['倍率提升', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 *= (1 + value) }],
-            ['倍率增加', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 += value }],
+            ['倍率增加', (伤害计算细节, value = 0) => { 伤害计算细节.倍率 += value; 伤害计算细节.单位期望伤害 = 1 }],
             ['基础攻击', (伤害计算细节, value = 0) => { 伤害计算细节.基础攻击 = value }],
             ['大攻击', (伤害计算细节, value = 0) => { 伤害计算细节.攻击 = 伤害计算细节.基础攻击 * (1 + value / 100) }],
             ['小攻击', (伤害计算细节, value = 0) => {
@@ -420,6 +421,7 @@
             ['等级', (伤害计算细节, value = 90) => {
                 伤害计算细节.防御 = (value + 100) / (value + 100 + 伤害计算细节.防御)
                 伤害计算细节.不暴击伤害 *= 伤害计算细节.防御
+                伤害计算细节.单位期望伤害 = 伤害计算细节.不暴击伤害 / 伤害计算细节.倍率 * (1 + (伤害计算细节.暴击 * (伤害计算细节.爆伤 - 1)))
             }],
             // 可以自行添加任何buff，按合适的顺序计算
         ])
@@ -497,7 +499,7 @@
                 this.伤害_sum += 伤害期望
             }
 
-            for (const [乘区, 精度] of Object.entries({ 攻击: 5, 攻击系数: 4, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
+            for (const [乘区, 精度] of Object.entries({ 单位期望伤害: 6, 攻击: 5, 攻击系数: 4, 倍率: 6, 暴击: 4, 爆伤: 4, 增伤: 4, 防御: 4 }))
                 伤害计算细节[乘区] = my_toPrecision(伤害计算细节[乘区], 精度)
 
             const 伤害展示 = Object.fromEntries(Object.entries({ 伤害期望, 暴击伤害, 不暴击伤害 }).map((kv) => [kv[0], my_toPrecision(kv[1], 6)]))
