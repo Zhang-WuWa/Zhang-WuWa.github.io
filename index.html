@@ -225,6 +225,7 @@
     <script src="configs/jinxi.js"></script>
     <script src="configs/xiangliyao.js"></script>
     <script src="configs/changli.js"></script>
+    <script src="configs/zanni.js"></script>
 
     <script>
 
@@ -479,6 +480,13 @@
 
             const 伤害计算细节 = {}
 
+            for (const key in 适用buff总计) {
+                if (buff_handlers.get(key) === undefined)
+                    alert('未知buff类型: ' + key +
+                        ', 可选: ' + JSON.stringify([...buff_handlers.keys()]) +
+                        ', 可自行添加')
+            }
+
             for (const [buff类别, buff_handler] of buff_handlers.entries()) {
                 const buff值 = 适用buff总计[buff类别]
                 if (buff值 !== undefined)
@@ -508,13 +516,14 @@
                 const h_ele = document.createElement('p')
                 h_ele.classList.add('action-title')
                 if (验证伤害) {
-                    const rtol = (暴击伤害 - 验证伤害) / 验证伤害
-                    if (Math.abs(rtol) >= 0.001) {
+                    const atol = (暴击伤害 - 验证伤害)
+                    if (Math.abs(atol) > 1 + 验证伤害 * 0.001) {
                         h_ele.classList.add('demage-wrong')
                     }
                     else {
                         h_ele.classList.add('demage-correct')
                     }
+                    const rtol = atol / 验证伤害
                     action_name += ` 误差${(rtol * 100).toFixed(2)}%`
                 }
                 else {
